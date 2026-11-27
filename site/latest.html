@@ -1,0 +1,561 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sprint／OKR 标准轮播母版</title><style>
+:root{color-scheme:dark;--bg:#07111f;--ink:#edf6ff;--muted:#a6b8cb;--panel:rgba(13,29,49,.84);--line:rgba(160,202,241,.22);--glow:rgba(93,180,255,.24);--accent:#79c8ff;--hot:#a47bff;--danger:#ff667e;--good:#53e2bc;--warn:#ffce68;--page-x:5.2vw;--head-size:clamp(42px,4.2vw,82px);font-family:Inter,"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink)}body{background-image:radial-gradient(ellipse at 14% 15%,rgba(44,111,176,.22),transparent 42%),radial-gradient(ellipse at 88% 80%,rgba(120,58,177,.2),transparent 38%),linear-gradient(135deg,#06101e,#0b1426 52%,#081425)}body.theme-gst{--accent:#6ff0d0;--hot:#41a9ff;--glow:rgba(51,226,203,.22);--line:rgba(111,240,208,.22)}#deck{position:relative;width:100%;height:100%;isolation:isolate}.slide{position:absolute;inset:0;display:none;padding:2.1vh var(--page-x) 4.1vh;overflow:hidden}.slide.active{display:flex;flex-direction:column;z-index:3}.slide.leave{display:flex;z-index:2;pointer-events:none}.slide:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:.42;background-image:linear-gradient(rgba(133,190,231,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(133,190,231,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 88%)}.slide:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:4;opacity:.10;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(160,220,255,.08) 4px);mix-blend-mode:screen}.topline{display:flex;align-items:center;justify-content:space-between;gap:2vw;min-height:9vh;border-bottom:1px solid var(--line);padding-bottom:1vh;margin-bottom:1.4vh;position:relative}.brand{font-size:var(--head-size);font-weight:950;letter-spacing:.035em;line-height:1;text-shadow:0 0 26px var(--glow);white-space:nowrap}.section-title{font-size:clamp(24px,2.2vw,42px);font-weight:750;letter-spacing:.05em;color:#cde7ff;margin-left:auto;text-align:right}.theme-gst .section-title{color:#cafff1}.badge{font-size:clamp(15px,1.1vw,22px);letter-spacing:.12em;color:var(--accent);border:1px solid var(--line);padding:.5em .8em;border-radius:999px;background:rgba(6,20,35,.55);white-space:nowrap}.footer{position:absolute;left:var(--page-x);right:var(--page-x);bottom:1.1vh;display:flex;justify-content:space-between;align-items:center;color:#8da5bf;font-size:clamp(12px,.85vw,17px);letter-spacing:.03em;z-index:5}.page-count{color:var(--accent);font-weight:700}.progress-track{position:absolute;left:0;bottom:0;width:100%;height:5px;background:rgba(160,202,241,.13);z-index:8}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--hot));box-shadow:0 0 14px var(--accent)}.panel{background:linear-gradient(145deg,rgba(19,39,62,.92),rgba(9,22,39,.78));border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 46px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.04);position:relative;overflow:hidden}.panel:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--accent),transparent 84%);opacity:.9}.label{font-size:clamp(13px,.93vw,18px);color:var(--muted);letter-spacing:.09em;text-transform:uppercase}.value{font-size:clamp(27px,2.1vw,42px);font-weight:800;line-height:1.13}.small-note{font-size:clamp(13px,.92vw,18px);color:var(--muted);line-height:1.4}.accent{color:var(--accent)}.hot{color:var(--hot)}.danger{color:var(--danger)}.good{color:var(--good)}.warn{color:var(--warn)}.headline{font-size:clamp(26px,2vw,40px);font-weight:780;margin:0 0 1vh}.overview{display:flex;flex-direction:column;min-height:0;flex:1;gap:1.25vh}.overview-head{display:grid;grid-template-columns:1.1fr .9fr;gap:1.2vw;min-height:8vh}.sprint-card,.status-card{padding:1.1vh 1.3vw;display:flex;align-items:center;justify-content:space-between;gap:1vw}.sprint-meta{display:flex;flex-direction:column;gap:.55vh}.sprint-name{font-size:clamp(24px,2vw,38px);font-weight:850}.date-range{font-size:clamp(17px,1.25vw,24px);color:#d9e9fa}.remaining{font-size:clamp(26px,2.1vw,42px);font-weight:900;color:var(--warn);white-space:nowrap;text-shadow:0 0 20px rgba(255,206,104,.28)}.status-card{line-height:1.65;align-items:center}.status-text{font-size:clamp(27px,2vw,40px);font-weight:900;letter-spacing:.1em;white-space:nowrap}.status-explain{font-size:clamp(14px,1vw,20px);color:var(--muted);line-height:1.65}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2vw;min-height:10vh}.kpi{padding:1.05vh 1.2vw;display:flex;align-items:center;justify-content:space-between;gap:.6vw}.kpi-main{display:flex;flex-direction:column;gap:.65vh}.ratio{font-size:clamp(18px,1.35vw,27px);color:#dbeaff}.meter{width:15vw;max-width:240px;height:8px;background:#172b42;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}.meter>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--hot));box-shadow:0 0 12px var(--accent)}.goal-panel{padding:1.2vh 1.4vw;flex:0 0 auto;max-height:20vh}.goal-text{font-size:clamp(17px,1.33vw,26px);line-height:1.48;white-space:pre-wrap;overflow:visible;color:#f2f7ff;margin-top:.5vh}.chart-panel{padding:.5vh .8vw .3vh;flex:1;min-height:31vh;display:flex;flex-direction:column}.chart-head{display:flex;justify-content:space-between;align-items:center;padding:.35vh .45vw}.chart-title{font-size:clamp(18px,1.35vw,26px);font-weight:760}.chart-legend{display:flex;gap:1.4vw;align-items:center;color:#bed1e4;font-size:clamp(12px,.88vw,17px)}.legend-item{display:flex;gap:.45em;align-items:center}.legend-line{width:30px;height:0;border-top:3px solid}.legend-line.planned{border-color:#88a1bb;border-style:dashed}.legend-line.actual{border-color:var(--accent)}.legend-line.forecast{border-color:var(--warn);border-style:dashed}.chart-wrap{flex:1;min-height:0}svg.chart{display:block;width:100%;height:100%;overflow:visible}.chart text{font-family:inherit;fill:#b9c9dc;font-size:15px}.chart .grid{stroke:rgba(163,194,224,.15);stroke-width:1}.chart .axis{stroke:rgba(204,225,246,.45);stroke-width:1.4}.chart .planned-line{fill:none;stroke:#829ab3;stroke-width:3;stroke-dasharray:10 8}.chart .actual-line{fill:none;stroke:var(--accent);stroke-width:5;filter:drop-shadow(0 0 7px var(--accent))}.chart .forecast-line{fill:none;stroke:var(--warn);stroke-width:4;stroke-dasharray:10 7}.chart .point{fill:var(--accent);stroke:#e2f7ff;stroke-width:2}.chart .current-point{fill:var(--warn);stroke:#fff2cc;stroke-width:2}.g-overview{display:flex;flex:1;min-height:0;flex-direction:column;gap:2vh}.g-metrics{display:grid;grid-template-columns:1.1fr 1fr .9fr;gap:1.3vw}.g-score{padding:2vh 1.5vw;min-height:20vh;display:flex;flex-direction:column;justify-content:space-between}.g-score .value{font-size:clamp(46px,4vw,78px)}.g-bar{height:17px;border-radius:99px;background:#152e43;margin-top:1vh;overflow:hidden}.g-bar i{display:block;height:100%;background:linear-gradient(90deg,#50e5c5,#58aaff);box-shadow:0 0 18px #50e5c5}.g-status{display:flex;align-items:center;gap:1vw}.g-status .status-text{font-size:clamp(36px,3.2vw,64px)}.g-note{padding:2vh 1.5vw;font-size:clamp(19px,1.6vw,32px);line-height:1.7}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.3vw;flex:1;min-height:0}.section-panel{padding:1.2vh 1.1vw;display:flex;flex-direction:column;min-height:0}.section-panel h2{font-size:clamp(21px,1.65vw,32px);margin:0 0 .9vh;font-weight:790}.section-panel p{margin:.4vh 0;line-height:1.55}.story-columns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1vw;flex:1;min-height:0}.story-column{display:flex;flex-direction:column;padding:1vh .9vw;min-height:0}.story-column h2{display:flex;justify-content:space-between;align-items:baseline;gap:.5vw;margin:0 0 .75vh;font-size:clamp(19px,1.5vw,30px);font-weight:820}.story-column .cards{display:flex;flex-direction:column;gap:.45vh;min-height:0;overflow:visible}.story-card{border-left:2px solid var(--line);padding:.45vh .55vw;background:rgba(255,255,255,.025);border-radius:0 7px 7px 0}.story-card .title{font-size:clamp(14px,.98vw,19px);line-height:1.25;color:#eef5fc;overflow-wrap:anywhere}.story-card .meta{font-size:clamp(11px,.75vw,15px);color:#9db2c8;line-height:1.25;margin-top:.18vh}.experiments{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw;flex:1;min-height:0}.experiment-card{padding:.9vh .9vw;min-height:0}.experiment-card .title{font-size:clamp(15px,1.08vw,21px);line-height:1.3;font-weight:650;overflow-wrap:anywhere}.experiment-card .meta{font-size:clamp(12px,.8vw,16px);line-height:1.3;color:#a8bed1;margin-top:.45vh}.exp-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding:.6vh .6vw}.exp-head h2{font-size:clamp(22px,1.7vw,34px);margin:0}.exp-empty{padding:1.2vh 1vw;color:#91a8bf;font-size:clamp(14px,1vw,20px)}.forecast-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1vw;margin-bottom:1.2vh}.forecast-box{padding:1.3vh 1.1vw;min-height:13vh}.forecast-box .value{font-size:clamp(25px,2vw,40px);margin-top:.5vh}.risk-list{display:flex;flex-direction:column;gap:.55vh;overflow:auto;min-height:0}.risk-row{display:grid;grid-template-columns:1fr auto;gap:.7vw;align-items:center;padding:.75vh .7vw;border-bottom:1px solid rgba(180,210,240,.11);font-size:clamp(14px,1.04vw,20px);line-height:1.3}.risk-row .risk-owner{color:#abc0d5;font-size:.88em;margin-top:.2vh}.risk-row .risk-due{color:var(--warn);font-size:.88em;text-align:right;white-space:nowrap}.risk-empty{font-size:clamp(17px,1.35vw,26px);color:#c2d5e6;padding:2vh 1vw;line-height:1.7}.action-text{font-size:clamp(18px,1.4vw,28px);line-height:1.65}.action-text strong{color:var(--accent)}.summary-strip{display:flex;gap:1vw;flex-wrap:wrap;margin-top:1vh}.summary-chip{font-size:clamp(13px,.9vw,18px);padding:.45em .75em;border:1px solid var(--line);border-radius:999px;color:#cad9e9;background:rgba(255,255,255,.03)}
+/* 六种分别设计的平滑转场 */
+.slide.enter.fx1{animation:warp-in .95s cubic-bezier(.18,.82,.22,1) both}.slide.leave.fx1{animation:warp-out .65s ease-in both}
+.slide.enter.fx2{animation:holo-in 1.05s cubic-bezier(.16,.7,.21,1) both}.slide.leave.fx2{animation:holo-out .72s ease-in both}
+.slide.enter.fx3{animation:scan-in .95s cubic-bezier(.2,.9,.22,1) both}.slide.leave.fx3{animation:scan-out .7s ease-in both}
+.slide.enter.fx4{animation:quantum-in 1.05s cubic-bezier(.15,.85,.18,1) both}.slide.leave.fx4{animation:quantum-out .7s ease-in both}
+.slide.enter.fx5{animation:flare-in .92s cubic-bezier(.17,.82,.28,1) both}.slide.leave.fx5{animation:flare-out .65s ease-in both}
+.slide.enter.fx6{animation:portal-in 1.05s cubic-bezier(.17,.82,.2,1) both}.slide.leave.fx6{animation:portal-out .7s ease-in both}
+@keyframes warp-in{from{opacity:0;transform:perspective(1500px) rotateY(-18deg) translateX(7vw) scale(.94);filter:blur(13px)}to{opacity:1;transform:none;filter:blur(0)}}@keyframes warp-out{to{opacity:0;transform:perspective(1500px) rotateY(14deg) translateX(-4vw) scale(.96);filter:blur(9px)}}
+@keyframes holo-in{0%{opacity:0;clip-path:inset(0 100% 0 0);filter:brightness(2.4) saturate(1.6)}65%{opacity:1;clip-path:inset(0 0 0 0);filter:brightness(1.5)}100%{filter:brightness(1)}}@keyframes holo-out{to{opacity:0;transform:translateY(-2vh) skewY(-1deg);filter:brightness(2) blur(5px)}}
+@keyframes scan-in{0%{opacity:0;clip-path:inset(100% 0 0 0);filter:blur(10px)}100%{opacity:1;clip-path:inset(0);filter:blur(0)}}@keyframes scan-out{to{opacity:0;clip-path:inset(0 0 100% 0);filter:blur(6px)}}
+@keyframes quantum-in{0%{opacity:0;transform:scale(.78) rotateX(12deg);filter:blur(16px) hue-rotate(50deg)}70%{opacity:1;transform:scale(1.015) rotateX(0);filter:blur(0) hue-rotate(0)}100%{transform:scale(1)}}@keyframes quantum-out{to{opacity:0;transform:scale(1.08) rotateX(-7deg);filter:blur(10px)}}
+@keyframes flare-in{0%{opacity:0;transform:scale(1.12) translateY(2vh);filter:blur(14px) brightness(2)}55%{opacity:1;transform:scale(.99);filter:blur(0) brightness(1.4)}100%{transform:scale(1);filter:brightness(1)}}@keyframes flare-out{to{opacity:0;transform:scale(.92) translateY(-2vh);filter:blur(9px) brightness(1.8)}}
+@keyframes portal-in{0%{opacity:0;clip-path:circle(0% at 50% 50%);filter:blur(12px) saturate(1.8)}100%{opacity:1;clip-path:circle(145% at 50% 50%);filter:blur(0) saturate(1)}}@keyframes portal-out{to{opacity:0;clip-path:circle(0% at 50% 50%);filter:blur(10px)}}
+@media(max-width:1200px){:root{--page-x:3vw}.story-columns{grid-template-columns:1fr 1fr}.topline{min-height:8vh}.goal-text{font-size:17px}.story-card .title{font-size:14px}.experiments{grid-template-columns:repeat(2,1fr)}}@media(max-height:800px){.slide{padding-top:1.2vh}.topline{min-height:7vh;margin-bottom:.8vh}.overview{gap:.7vh}.goal-panel{max-height:17vh}.goal-text{font-size:clamp(15px,1.1vw,20px);line-height:1.32}.story-card .title{font-size:clamp(12px,.88vw,16px)}.story-card .meta{font-size:11px}.forecast-box{min-height:10vh}}
+@media(prefers-reduced-motion:reduce){.slide.enter,.slide.leave{animation:fade-simple .3s ease both}@keyframes fade-simple{from{opacity:0}to{opacity:1}}}
+
+/* 大屏修订：原图完整填充、目标保留换行、长列表同页展示 */
+.goal-panel{max-height:none;overflow:visible;flex-shrink:0;padding:1vh 1.2vw}.goal-text{font-size:clamp(18px,1.2vw,25px);line-height:1.48;white-space:pre-wrap;overflow:visible}.overview{gap:1vh}.overview-head{min-height:10vh;grid-template-columns:1.1fr 1fr}.sprint-card{flex-wrap:wrap}.remaining{font-size:clamp(25px,1.9vw,40px)}.status-explain{font-size:clamp(14px,1vw,20px);line-height:1.7}.status-card{gap:1.2vw}.status-text{font-size:clamp(25px,1.85vw,38px)}.kpi{padding:.9vh 1.1vw;min-width:0}.kpis{min-height:9vh}.kpi .value{font-size:clamp(25px,1.9vw,38px)}.kpi .small-note{font-size:clamp(12px,.85vw,17px);line-height:1.5}.chart-panel{min-height:0;padding:.5vh .8vw;flex:1}.chart-wrap{min-height:0;display:flex;align-items:stretch;justify-content:center;background:#fff;border-radius:9px;overflow:hidden}.original-chart{width:100%;height:100%;object-fit:fill;display:block}.story-columns{grid-template-columns:1fr 1.18fr 1fr;min-height:0}.story-column .cards{overflow-y:auto;flex:1;min-height:0;scrollbar-width:none;gap:1vh}.auto-scroll::-webkit-scrollbar{display:none}.story-card{flex-shrink:0;padding:.7vh .55vw}.story-card .title{font-size:clamp(16px,1.03vw,22px);line-height:1.48}.story-card .meta{font-size:clamp(13px,.85vw,18px);line-height:1.5}.scroll-hint{font-size:clamp(12px,.85vw,17px);color:var(--muted);line-height:1.45;margin-bottom:.65vh;flex-shrink:0}.testing-label{font-size:14px;color:var(--warn);font-weight:800;margin-bottom:.35vh}.gst-delivery{display:flex;flex-direction:column;flex:1;min-height:0;gap:1vh}.experiments-scroll{flex:1;min-height:0;overflow:auto;scrollbar-width:none}.experiments-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1vw}.experiment-card{padding:1.25vh 1.15vw;min-height:11vh}.experiment-card .title{font-size:clamp(19px,1.28vw,27px);line-height:1.45}.experiment-card .meta{font-size:clamp(14px,.9vw,19px);line-height:1.5}.experiment-state{font-size:clamp(12px,.88vw,18px);font-weight:750;color:var(--accent);margin-bottom:.55vh}.g-overview{gap:1.2vh}.two-col{flex:1.15;min-height:0}.quality-panel{flex:.85;min-height:0}.risk-list{flex:1;scrollbar-width:none}.risk-row{font-size:clamp(18px,1.2vw,25px);line-height:1.55}.g-score .value small{font-size:.42em}.g-note{font-size:clamp(19px,1.4vw,30px);line-height:1.55}.forecast-box .value{font-size:clamp(23px,1.6vw,34px);line-height:1.3}.forecast-box .value small{font-size:.63em}.forecast-box{min-height:12vh}.badge{font-size:clamp(13px,.95vw,19px)}.brand{font-weight:950;font-size:clamp(54px,4.25vw,94px)}.progress-fill{transition:none}.slide.leave{z-index:2}.slide.active.enter{z-index:3}
+@media(max-height:800px){.goal-text{font-size:16px;line-height:1.4}.overview-head{min-height:10vh}.brand{font-size:42px}.story-card .title{font-size:15px}.story-card .meta{font-size:12px}.kpi .value{font-size:23px}.status-explain{font-size:13px}}
+
+/* 每队的 OKR 首页，完整原文同页展示。 */
+.okr-layout{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(330px,.8fr);gap:1.2vw;flex:1;min-height:0}
+.okr-main,.okr-side{display:flex;flex-direction:column;min-height:0;gap:1vh}
+.okr-intro,.okr-objectives,.okr-stat,.okr-values{padding:1.2vh 1.2vw}
+.okr-intro{flex:0 0 auto}.okr-source{font-size:clamp(13px,.95vw,18px);color:var(--muted);line-height:1.5}
+.okr-period{font-size:clamp(22px,1.7vw,34px);font-weight:850;margin:.4vh 0}
+.okr-objectives,.okr-values{flex:1;min-height:0;overflow-y:auto;scrollbar-width:none}
+.okr-objective{padding:1.1vh 0 1.4vh;border-bottom:1px solid var(--line)}
+.okr-objective:last-child{border-bottom:0}.okr-oid{font-size:clamp(13px,.9vw,18px);font-weight:850;color:var(--accent);letter-spacing:.08em}
+.okr-title{font-size:clamp(20px,1.38vw,28px);font-weight:800;line-height:1.45;margin:.3vh 0 .7vh;overflow-wrap:anywhere}
+.okr-description{color:var(--muted);font-size:clamp(13px,.92vw,18px);line-height:1.45;margin-bottom:.6vh}
+.okr-kr{font-size:clamp(17px,1.08vw,22px);line-height:1.5;padding:.48vh 0 .48vh 1.5em;position:relative;overflow-wrap:anywhere}
+.okr-kr:before{content:'KR';position:absolute;left:0;top:.6vh;font-size:.69em;font-weight:900;color:var(--hot)}
+.okr-kr-value{color:var(--accent);font-weight:800;white-space:nowrap}.okr-stat{flex:0 0 auto}
+.okr-count{font-size:clamp(38px,3.1vw,64px);font-weight:900;line-height:1.1;color:var(--accent)}
+.okr-count small{font-size:.43em;color:var(--muted)}.okr-stat-note{font-size:clamp(15px,1vw,20px);color:var(--muted);line-height:1.5;margin-top:.5vh}
+.okr-values h2{font-size:clamp(22px,1.6vw,32px);margin:0 0 .6vh}
+.okr-value{padding:.85vh 0;border-bottom:1px solid var(--line);font-size:clamp(15px,.98vw,20px);line-height:1.45}
+.okr-value strong{font-size:1.18em;color:var(--accent)}.okr-value .good{color:var(--good)}.okr-value .warn{color:var(--warn)}
+@media(max-width:1100px){.okr-layout{grid-template-columns:minmax(0,1.5fr) minmax(270px,.8fr)}.okr-kr{font-size:15px}}
+
+/* 所有列表静态展示，按页面空间分配卡片；溢出时生成同类型续页。 */
+.okr-objectives,.okr-values,.story-column .cards,.experiments-scroll,.risk-list{overflow:visible!important}
+.okr-objectives,.story-column .cards,.risk-list{justify-content:space-around}
+.experiments-grid{min-height:100%;align-content:space-around}
+.slide .story-card,.slide .experiment-card,.slide .okr-objective,.slide .okr-value{break-inside:avoid}
+
+/* 固定每队四页：静态自适应布局，所有条目同屏展示。 */
+.okr-layout{display:flex!important;flex-direction:column;gap:.65vh;min-height:0;flex:1}
+.okr-intro{display:flex;align-items:center;gap:1.1vw;padding:.55vh 1vw;min-height:5.5vh;flex:0 0 auto}
+.okr-period{font-size:clamp(19px,1.3vw,27px);margin:0;white-space:nowrap}
+.okr-source{font-size:clamp(11px,.75vw,15px);line-height:1.3}
+.okr-stat{display:flex;align-items:center;gap:1vw;padding:.5vh 1vw;min-height:5.5vh;flex:0 0 auto}
+.okr-stat .label{white-space:nowrap}.okr-count{font-size:clamp(24px,1.9vw,37px);white-space:nowrap}
+.okr-count small{font-size:.5em}.okr-stat-note{font-size:clamp(12px,.79vw,16px);line-height:1.3;margin:0}
+.okr-objectives{display:block!important;flex:1;min-height:0;columns:3;column-gap:1vw;column-fill:balance;overflow:visible!important;padding:.65vh .8vw}
+.okr-objective{display:inline-block;width:100%;vertical-align:top;break-inside:avoid;padding:.35vh .35vw .55vh;margin:0;border-bottom:1px solid var(--line)}
+.okr-oid{font-size:clamp(11px,.73vw,15px)}.okr-title{font-size:clamp(16px,1vw,21px);line-height:1.3;margin:.2vh 0 .4vh}
+.okr-description{font-size:clamp(11px,.7vw,15px);line-height:1.25;margin-bottom:.3vh}
+.okr-kr{font-size:clamp(13px,.82vw,17px);line-height:1.28;padding:.25vh 0 .25vh 1.35em}
+.okr-kr:before{top:.3vh}.okr-kr-value,.okr-gap{font-size:.9em;font-weight:800;color:var(--accent)}
+.story-static{display:flex;flex-direction:column;flex:1;min-height:0;gap:.65vh}
+.story-static-summary{display:flex;gap:.8vw;flex:0 0 auto}
+.story-static-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));flex:1;min-height:0;gap:.55vh .6vw}
+.story-static-grid .story-card{min-height:0;overflow:visible;padding:.4vh .45vw;display:flex;flex-direction:column;justify-content:center;background:rgba(255,255,255,.045)}
+.story-static-grid .story-card .title{font-size:clamp(13px,.88vw,18px);line-height:1.25}
+.story-static-grid .story-card .meta{font-size:clamp(11px,.7vw,14px);line-height:1.2}
+.story-state{font-size:clamp(11px,.68vw,14px);font-weight:850;color:var(--accent);margin-bottom:.1vh}
+.story-card[data-status="0"] .story-state{color:var(--good)}.story-card[data-status="2"] .story-state{color:var(--warn)}
+.experiments-scroll{overflow:visible!important;min-height:0;flex:1}
+.experiments-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));min-height:100%;height:100%;gap:.6vh .65vw;align-content:stretch}
+.experiments-grid .experiment-card{min-height:0;padding:.6vh .65vw;overflow:visible;display:flex;flex-direction:column;justify-content:center}
+.experiments-grid .experiment-card .title{font-size:clamp(13px,.87vw,18px);line-height:1.27}
+.experiments-grid .experiment-card .meta{font-size:clamp(11px,.68vw,14px);line-height:1.2;margin-top:.25vh}
+.experiments-grid .experiment-state{font-size:clamp(11px,.68vw,14px);margin-bottom:.2vh}
+.slide[data-group="7"] .two-col{grid-template-columns:1.4fr .6fr}
+.slide[data-group="7"] .risk-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));gap:.4vh .6vw;overflow:visible!important;align-content:stretch}
+.slide[data-group="7"] .risk-row{display:flex;flex-direction:column;justify-content:center;font-size:clamp(14px,.95vw,19px);line-height:1.25;padding:.4vh .5vw;background:rgba(255,255,255,.035)}
+.slide[data-group="7"] .risk-due{text-align:left;font-size:.82em}
+.slide[data-group="7"] .action-text{font-size:clamp(17px,1.1vw,23px);line-height:1.4}
+.slide[data-group="3"] .risk-list{overflow:visible!important}
+@media(max-width:1400px){.okr-objectives{column-gap:.7vw}.okr-title{font-size:15px}.okr-kr{font-size:12px;line-height:1.2}.story-static-grid .story-card .title{font-size:12px}.story-static-grid .story-card .meta{font-size:10px}.experiments-grid .experiment-card .title{font-size:12px}.experiments-grid .experiment-card .meta{font-size:10px}}
+
+/* OKR 目标卡铺满单页主区域。 */
+.okr-objectives{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));column-gap:.9vw;row-gap:.8vh;column-fill:auto;overflow:hidden!important;align-items:stretch}
+.okr-objective{display:flex;width:auto;height:100%;min-height:0;flex-direction:column;justify-content:center;padding:.7vh .7vw;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.035)}
+.okr-objective:nth-child(5){grid-column:2/4}
+@media(max-width:1400px){.okr-objective{padding:.35vh .45vw}.okr-title{font-size:14px;line-height:1.2}.okr-kr{font-size:11px;line-height:1.16}.okr-description{font-size:10px;line-height:1.15}}
+
+/* 按各目标及 KR 的内容量分配版面，并提高 OKR 正文字号。 */
+.okr-objectives.layout-first .okr-objective:nth-child(1){grid-column:1/3;grid-row:1}
+.okr-objectives.layout-first .okr-objective:nth-child(2){grid-column:3;grid-row:1}
+.okr-objectives.layout-first .okr-objective:nth-child(3){grid-column:1;grid-row:2}
+.okr-objectives.layout-first .okr-objective:nth-child(4){grid-column:2;grid-row:2}
+.okr-objectives.layout-first .okr-objective:nth-child(5){grid-column:3;grid-row:2}
+.okr-objectives.layout-third .okr-objective:nth-child(1){grid-column:1;grid-row:1}
+.okr-objectives.layout-third .okr-objective:nth-child(2){grid-column:2;grid-row:1}
+.okr-objectives.layout-third .okr-objective:nth-child(3){grid-column:3;grid-row:1/3}
+.okr-objectives.layout-third .okr-objective:nth-child(4){grid-column:1;grid-row:2}
+.okr-objectives.layout-third .okr-objective:nth-child(5){grid-column:2;grid-row:2}
+.okr-objective{padding:1.1vh .85vw}
+.okr-title{font-size:clamp(18px,1.12vw,23px);line-height:1.31}
+.okr-kr{font-size:clamp(15px,.88vw,19px);line-height:1.31;padding:.35vh 0 .35vh 1.35em}
+.okr-description{font-size:clamp(12px,.74vw,16px);line-height:1.3}
+.okr-objective[data-density="short"] .okr-title{font-size:clamp(20px,1.32vw,27px)}
+.okr-objective[data-density="short"] .okr-kr{font-size:clamp(16px,1vw,21px)}
+@media(max-width:1400px){.okr-objective{padding:.5vh .55vw}.okr-title{font-size:16px;line-height:1.22}.okr-kr{font-size:13px;line-height:1.19}.okr-description{font-size:11px;line-height:1.2}.okr-objective[data-density="short"] .okr-title{font-size:18px}.okr-objective[data-density="short"] .okr-kr{font-size:14px}}
+/* GST 团队沿用绿色识别色，并以独立的青绿色背景和面板强化区分。 */
+body.theme-gst{--bg:#061a1d;--muted:#afcec8;background-image:radial-gradient(ellipse at 15% 14%,rgba(25,137,122,.30),transparent 45%),radial-gradient(ellipse at 87% 82%,rgba(37,108,136,.22),transparent 42%),linear-gradient(135deg,#06191b,#09262a 52%,#071c27)}
+body.theme-gst .panel{background:linear-gradient(145deg,rgba(14,52,55,.93),rgba(6,30,39,.82))}
+body.theme-gst .okr-objective{background:rgba(41,187,159,.045)}
+.okr-title,.okr-kr{white-space:pre-wrap}
+.okr-kr{padding-left:0}
+.okr-kr::before{content:none}
+.okr-unfilled{white-space:nowrap;color:var(--muted)}
+.gst-open-work{display:grid;grid-template-columns:1fr 2.5fr 1fr;gap:.65vw;flex:1;min-height:0}
+.gst-open-group{min-width:0;min-height:0;padding:.7vh .65vw}
+.gst-open-group h2{font-size:clamp(14px,1.03vw,20px);margin:0 0 .5vh;color:var(--accent)}
+.gst-open-list{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:.27vh .5vw}
+.gst-open-group:nth-child(2) .gst-open-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+.gst-open-card{font-size:clamp(12px,.79vw,16px);line-height:1.24;overflow-wrap:anywhere;border-bottom:1px solid var(--line);padding:.3vh .22vw}
+.slide[data-group="5"] .g-overview{gap:.7vh}
+.slide[data-group="5"] .g-note{flex:0 0 auto;padding:.7vh .75vw}
+.slide[data-group="3"] .risk-row{min-width:0;white-space:normal;overflow-wrap:anywhere}
+.slide[data-group="3"] .forecast-grid{grid-template-columns:1fr 1fr 1fr 1.14fr}
+.slide[data-group="3"] .risk-list{justify-content:flex-start}
+@media(max-height:800px){
+  .slide[data-group="3"] .risk-row{font-size:16px;line-height:1.35;padding:.45vh .5vw}
+  .slide[data-group="3"] .risk-list .story-card{padding:.55vh .5vw}
+}
+.slide[data-group="7"] .risk-list{grid-template-rows:none;grid-auto-rows:minmax(0,1fr)}
+
+.delivery-status-page{flex:1;min-height:0;display:flex;flex-direction:column;gap:.75vh}
+.delivery-task-summary{color:var(--muted);font-size:clamp(17px,.76vw,31px)}
+.delivery-status-groups{flex:1;min-height:0;display:grid;gap:.85vw}
+.delivery-status-group,.delivery-status-card,.delivery-status-split span{--delivery-color:#b8c5d3}
+.delivery-status-page [data-status="done"]{--delivery-color:#71e4ab}
+.delivery-status-page [data-status="doing"]{--delivery-color:#7dbeff}
+.delivery-status-page [data-status="testing"]{--delivery-color:#d2b4ff}
+.delivery-status-page [data-status="todo"]{--delivery-color:#b8c5d3}
+.delivery-status-group{display:flex;flex-direction:column;min-width:0;min-height:0;gap:.65vh;padding:.9vh .7vw;border-top:clamp(5px,.34vh,8px) solid var(--delivery-color)}
+.delivery-status-group[data-empty="true"]{align-self:start}
+.delivery-status-heading{margin:0;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:.3vh .45vw;color:var(--delivery-color);font-weight:850;font-size:clamp(22px,1.02vw,42px);line-height:1.2}
+.delivery-status-total{font-size:.74em;white-space:nowrap}
+.delivery-status-split{display:flex;gap:.68vw;flex-wrap:wrap;line-height:1.2}
+.delivery-status-split span{font-size:clamp(16px,.75vw,30px);font-weight:780;color:var(--delivery-color)}
+.delivery-status-cards{flex:1;min-height:0;display:grid;grid-auto-rows:minmax(0,1fr);gap:.52vh .4vw}
+.delivery-status-card.story-card{display:flex;flex-direction:column;align-items:flex-start;gap:.4vh;min-width:0;min-height:0;padding:.7vh .5vw;background:rgba(255,255,255,.046);border-left:clamp(3px,.17vw,6px) solid var(--delivery-color)}
+.delivery-status-card .title{font-size:clamp(17px,.84vw,33px);line-height:1.3;overflow-wrap:anywhere;white-space:normal}
+.delivery-status-card .meta{font-size:clamp(14px,.66vw,26px);line-height:1.25;overflow-wrap:anywhere;white-space:normal}
+.delivery-status-label{display:inline-block;align-self:flex-start;color:var(--delivery-color);font-size:clamp(15px,.68vw,28px);line-height:1.2;font-weight:850}
+.okr-source-stale{color:var(--warn)}
+
+/* 2K / 4K 大屏正文 */
+.okr-title{font-size:clamp(28px,1.3vw,50px);line-height:1.24}
+.okr-kr{font-size:clamp(24px,1.12vw,43px);line-height:1.25}
+.okr-description{font-size:clamp(20px,.9vw,35px);line-height:1.24}
+.okr-objective[data-density="short"] .okr-title{font-size:clamp(30px,1.4vw,54px)}
+.okr-objective[data-density="short"] .okr-kr{font-size:clamp(26px,1.22vw,47px)}
+.gst-open-group h2{font-size:clamp(24px,1.12vw,43px)}
+.gst-open-card{font-size:clamp(21px,1vw,38px);line-height:1.24}
+
+/* KR 字体略收小，增加条目间距。 */
+.okr-kr{font-size:clamp(23px,1.05vw,40px);line-height:1.25}
+.okr-objective[data-density="short"] .okr-kr{font-size:clamp(25px,1.14vw,44px)}
+.okr-kr + .okr-kr{margin-top:clamp(8px,.65vh,14px)}
+
+/* GST 预测页风险内容放大。 */
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row{font-size:clamp(24px,1.15vw,44px);line-height:1.3;overflow-wrap:anywhere}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-owner{font-size:.88em;line-height:1.3}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-due{font-size:.88em;line-height:1.3;white-space:normal}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-empty{font-size:clamp(24px,1.15vw,44px);line-height:1.3}
+
+/* O 使用暖金色，KR 使用浅蓝色。 */
+.okr-objective .okr-title{color:#ffd88a}
+.okr-objective .okr-kr{color:#c4e3ff}
+.okr-objective .okr-kr-value,.okr-objective .okr-gap{color:#a0dfc9}
+.okr-objective .okr-unfilled{color:#b8c5d3}
+
+/* 缩小目标正文，突出目标维度。 */
+.okr-objective .okr-title{font-size:clamp(26px,1.18vw,46px);line-height:1.24}
+.okr-objective .okr-kr{font-size:clamp(22px,.98vw,38px);line-height:1.25}
+.okr-objective[data-density="short"] .okr-title{font-size:clamp(28px,1.28vw,50px)}
+.okr-objective[data-density="short"] .okr-kr{font-size:clamp(24px,1.06vw,41px)}
+.okr-objective .okr-oid{font-size:clamp(23px,1.05vw,41px);font-weight:850;line-height:1.25;margin-bottom:.55vh}
+
+/* 目标卡及风险条目使用顶部对齐。 */
+.okr-objective{justify-content:flex-start}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;align-content:start;gap:.7vw}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row > div{min-width:0}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-due{text-align:right;align-self:start;white-space:nowrap}
+
+/* 风险标题独占整行，截止时间位于右下角。 */
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-list{grid-template-columns:minmax(0,1fr)}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 1fr;align-content:stretch;row-gap:.45vh}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row > div:first-child{display:contents}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row > div:first-child > div:first-child{grid-column:1/-1;grid-row:1;white-space:nowrap;overflow-wrap:normal}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row .risk-owner{grid-column:1;grid-row:2;align-self:end}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row .risk-due{grid-column:2;grid-row:2;align-self:end;text-align:right;margin:0;white-space:nowrap}
+
+/* 负责人和截止时间在右下方共同右对齐。 */
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row{grid-template-rows:auto 1fr auto;row-gap:.3vh}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row .risk-owner{grid-column:1/-1;grid-row:2;align-self:end;justify-self:end;text-align:right;margin:0}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row .risk-due{grid-column:1/-1;grid-row:3;align-self:end;justify-self:end;text-align:right;margin:0}
+
+/* 放大风险条目标题。 */
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row > div:first-child > div:first-child{font-size:clamp(30px,1.35vw,52px);line-height:1.25}
+
+/* 每条风险的内容整体垂直居中。 */
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row{grid-template-rows:auto auto auto;align-content:center}
+.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row .risk-owner,.slide[data-group="7"] .two-col > .section-panel:first-child .risk-row .risk-due{align-self:center}
+
+.slide[data-group="3"] .pst-dimension-row{display:block;font-size:clamp(20px,1vw,38px);line-height:1.4;white-space:normal;overflow-wrap:anywhere}
+.slide[data-group="3"] .pst-dimension-advice{margin-bottom:1.1vh;font-size:clamp(20px,1vw,38px);line-height:1.4}
+.slide[data-group="3"] .pst-dimension-advice strong{color:var(--accent);display:block;margin-bottom:.45vh}
+.slide[data-group="3"] .pst-dimension-advice .small-note{margin-top:.5vh;font-size:clamp(16px,.75vw,29px)}
+
+.okr-kr-meta{color:var(--muted);font-size:clamp(18px,.74vw,29px);line-height:1.3;margin-top:.28vh;white-space:normal;font-weight:500}
+.okr-objectives.layout-six{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:1fr 1fr}
+.okr-objectives.layout-six .okr-objective:nth-child(1){grid-column:1;grid-row:1}
+.okr-objectives.layout-six .okr-objective:nth-child(2){grid-column:2;grid-row:1}
+.okr-objectives.layout-six .okr-objective:nth-child(3){grid-column:1/3;grid-row:2}
+.okr-objectives.layout-six .okr-objective:nth-child(4){grid-column:3/5;grid-row:1}
+.okr-objectives.layout-six .okr-objective:nth-child(5){grid-column:3;grid-row:2}
+.okr-objectives.layout-six .okr-objective:nth-child(6){grid-column:4;grid-row:2}
+
+
+
+/* 通用团队母版：保留原配色组件、字体层级和六种 3D 转场。 */
+#carouselControls{position:fixed;right:5.2vw;top:.25vh;display:flex;gap:.3vw;z-index:100}
+#carouselControls button{border:1px solid var(--line);border-radius:8px;background:rgba(7,20,35,.88);color:var(--accent);font-family:inherit;font-size:clamp(14px,.6vw,23px);padding:.35vh .45vw;cursor:pointer}
+#controlNotice{position:fixed;left:5.2vw;right:5.2vw;bottom:4.4vh;color:var(--warn);font-size:clamp(16px,.75vw,29px);z-index:100;pointer-events:none}
+body[data-team-theme] .panel{background:linear-gradient(145deg,var(--team-panel),var(--bg))}
+.brand{font-size:clamp(60px,3.8vw,146px);line-height:1.35}
+.slide .okr-objective{justify-content:flex-start;grid-column:auto;grid-row:auto}
+.okr-objectives{columns:auto!important;padding:.65vh .8vw}
+.okr-title{font-size:clamp(28px,1.18vw,46px);color:#ffd88a;line-height:1.24}
+.okr-kr{font-size:clamp(24px,.98vw,38px);color:#c4e3ff;line-height:1.25;padding:0;margin:0}
+.okr-kr+.okr-kr{margin-top:clamp(9px,.65vh,14px)}
+.okr-oid{font-size:clamp(27px,1.06vw,41px);line-height:1.2}
+.okr-kr-meta{font-size:clamp(18px,.74vw,29px);color:var(--muted);line-height:1.3;margin-top:.3vh}
+.good{color:var(--good)}.warn{color:var(--warn)}.danger{color:var(--danger)}.neutral{color:var(--muted)}
+.setup-empty{white-space:pre-line;margin:auto;text-align:center;font-size:clamp(26px,1.4vw,54px);line-height:1.8}
+.overview,.g-overview{flex:1;min-height:0;display:flex;flex-direction:column;gap:.9vh}
+.overview-head{grid-template-columns:1fr 1fr;min-height:9vh}
+.sprint-card,.status-card{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.5vh;padding:1vh 1vw}
+.status-card .value{font-size:clamp(28px,1.18vw,46px)}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1vw;min-height:9vh}
+.kpi{padding:1vh 1vw;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.4vh}.kpi .value{font-size:clamp(30px,1.45vw,56px)}
+.kpi .small-note{font-size:clamp(17px,.74vw,29px)}
+.goal-panel{min-height:0;padding:.8vh 1vw;flex:0 0 auto}
+.goal-text{white-space:pre-wrap;font-size:clamp(24px,.98vw,38px);line-height:1.35}
+.chart-panel{flex:1;min-height:0;display:flex;flex-direction:column;padding:.8vh .8vw}
+.original-chart{width:100%;height:100%;flex:1;min-height:0;background:white;border-radius:9px}
+.chart-missing{font-size:clamp(24px,1.1vw,42px);margin:auto;color:var(--muted)}
+.gst-open-work{display:grid;grid-template-columns:.85fr 1.4fr .85fr;gap:.8vw;flex:1;min-height:0}
+.gst-open-group{padding:.8vh .7vw;min-height:0;overflow:visible}
+.gst-open-group h2{font-size:clamp(29px,1.12vw,43px);margin:0 0 .6vh}
+.gst-open-list{display:grid;grid-auto-flow:row;grid-auto-rows:minmax(0,1fr);gap:.4vh}
+.gst-open-card{font-size:clamp(26px,1vw,38px);line-height:1.25;white-space:pre-wrap}
+.g-note{padding:.8vh .8vw;font-size:clamp(19px,.85vw,33px);line-height:1.35}
+.delivery-status-page{flex:1;min-height:0}.delivery-status-groups{height:100%;display:grid;gap:.8vw}
+.delivery-status-card .title{font-size:clamp(20px,.84vw,33px);line-height:1.28}
+.delivery-status-card .meta{font-size:clamp(16px,.66vw,26px);line-height:1.24}
+/* 高密度正式轮播：保留全部条目，通过摘要和紧凑排版适配 2K／4K 单屏。 */
+.okr-objective .okr-title{font-size:clamp(18px,.86vw,33px);line-height:1.18}
+.okr-objective .okr-kr{font-size:clamp(15px,.70vw,27px);line-height:1.16}
+.okr-objective .okr-kr-meta{font-size:clamp(12px,.52vw,20px);line-height:1.14;margin-top:.16vh}
+.okr-objective .okr-kr+.okr-kr{margin-top:clamp(4px,.28vh,7px)}
+.delivery-status-heading{font-size:clamp(18px,.82vw,31px)}
+.delivery-status-split span{font-size:clamp(12px,.56vw,21px)}
+.delivery-status-card.story-card{gap:.18vh;padding:.38vh .34vw}
+.delivery-status-card .title{font-size:clamp(13px,.56vw,21px);line-height:1.14}
+.delivery-status-card .meta{font-size:clamp(10px,.45vw,17px);line-height:1.12}
+.delivery-status-label{font-size:clamp(11px,.48vw,18px)}
+.forecast-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8vw;flex:0 0 auto}
+.forecast-box{padding:1vh 1vw;min-height:11vh}.forecast-box .value{font-size:clamp(27px,1.12vw,43px)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1vw;flex:1;min-height:0}
+.slide[data-group="7"] .two-col{grid-template-columns:1.65fr .7fr}
+.section-panel{padding:1vh 1vw;display:flex;flex-direction:column;min-height:0;overflow:visible}
+.section-panel h2{font-size:clamp(29px,1.35vw,52px);margin:0 0 .8vh}
+.risk-list{display:grid;grid-template-columns:1fr;grid-auto-rows:minmax(0,1fr);gap:.5vh;flex:1;min-height:0;overflow:visible}
+.risk-row{font-size:clamp(24px,1vw,38px);line-height:1.35;min-width:0;padding:.7vh .5vw}
+.action-text{font-size:clamp(24px,.98vw,38px);line-height:1.35}
+.pst-dimension-advice{margin-bottom:1vh}.pst-dimension-advice strong{color:var(--accent)}
+.quality-panel{flex:0 0 25%;min-height:0}.quality-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.gst-risk-panel .risk-row.gst-risk-row{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:stretch!important;gap:.3vh;font-size:clamp(28px,1.35vw,52px)}
+.gst-risk-row .risk-title{white-space:nowrap;overflow-wrap:normal;line-height:1.3}
+.gst-risk-row>.risk-title{display:block!important;width:100%;align-self:stretch!important}
+.gst-risk-row>.risk-owner,.gst-risk-row>.risk-due{display:block!important;width:100%;align-self:stretch!important;margin:0!important}
+.gst-risk-row .risk-owner,.gst-risk-row .risk-due{text-align:right;font-size:clamp(22px,1.02vw,39px);line-height:1.3}
+.gst-risk-row .risk-due{color:var(--warn)}
+</style></head><body><nav id="carouselControls" aria-label="大屏播放控制"><button id="previousSlide" aria-label="上一页">◀ 上一页</button><button id="nextSlide" aria-label="下一页">下一页 ▶</button><button id="toggleFullscreen" aria-label="进入全屏">⛶ 全屏</button></nav><div id="controlNotice" role="status" aria-live="polite"></div><main id="deck"></main><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div><script id="carousel-data" type="application/json">{"schemaVersion":1,"generatedAt":"2026-11-27T06:42:33.272Z","teams":[{"id":"shared-pst2","name":"共享-PST2","projectName":"FBA价值流","type":"PST","classificationVerified":true,"board":{"id":"1f1e19d2-0edc-6a20-a5b1-0242ac170007","sprint":"Sprint6","begin":"2026-11-16","end":"2026-11-27","snapshot":"2026-11-27T03:54:05.437Z","identityVerified":true,"complete":false,"workdaysVerified":false,"workdays":[],"cards":[{"columnId":"19578532","effort":null,"id":"18198","kind":"goal","laneId":"0000000004986247","owners":[],"status":"todo","title":"迭代目标：1、完成广告系统及促销系统的监控指标2、完成销售漏斗看板数据的正常下载","uuid":"1f1e19d2-d8f9-6910-9173-0242ac1e0002"},{"columnId":"19578532","effort":null,"id":"18235","kind":"goal","laneId":"0000000004986247","owners":[],"status":"todo","title":"团队容量：480((7+0.5)5*2*8*0.8)","uuid":"1f1e1a92-7f81-6960-b4db-0242ac170007"},{"columnId":"19578532","effort":null,"id":"18214","kind":"goal","laneId":"589fd49624940cc9","owners":[],"status":"todo","title":"系统治理及稳定性提升","uuid":"1f1e1a35-c940-6e80-bc66-0242ac1e0002"},{"columnId":"19578533","effort":null,"id":"18220","kind":"story","laneId":"589fd49624940cc9","owners":[],"status":"todo","title":"线上运维任务模板：线上问题：XXX处理目标：XXX完成时间：XXX处理进度：X月X日，完成XX——是否完成X月X日，完成XX——是否完成","uuid":"1f1e1a4b-b271-6360-8987-0242ac170007","summary":"线上问题：XXX处理目标：XXX","summarySource":"线上运维任务模板：线上问题：XXX处理目标：XXX完成时间：XXX处理进度：X月X日，完成XX——是否完成X月X日，完成XX——是否完成"},{"columnId":"19578533","effort":null,"id":"18709","kind":"story","laneId":"589fd49624940cc9","owners":["地福"],"status":"todo","title":"线上运维任务模板：线上问题：日本积分-309策略 详情表状态 7天 没有变更处理目标：完成时间：2026-11-17 19:57:20处理进度：Integral_PointDeal_Task 没有服务去获取数据更新明细表的数据转需求","uuid":"1f1e32e0-d826-6be0-b569-0242ac170007","summary":"线上问题：日本积分-309策略 详情表状态 7天 没有变更","summarySource":"线上运维任务模板：线上问题：日本积分-309策略 详情表状态 7天 没有变更处理目标：完成时间：2026-11-17 19:57:20处理进度：Integral_PointDeal_Task 没有服务去获取数据更新明细表的数据转需求"},{"columnId":"19578533","effort":7,"id":"19161","kind":"story","laneId":"589fd49624940cc9","owners":["地福"],"status":"todo","title":"层级促销-清理脏数据","uuid":"1f1e7364-7ca5-6020-939b-0242ac180003","summary":"层级促销-清理脏数据","summarySource":"层级促销-清理脏数据"},{"columnId":"19578536","effort":null,"id":"18553","kind":"task","laneId":"589fd49624940cc9","owners":["地福"],"status":"doing","title":"线上问题：日本积分-309策略 详情表状态 7天 没有变更处理进度：Integral_PointDeal_Task 没有服务去获取数据更新明细表的数据转需求，确定平移或者马上处理-1124等排期，本周内处理完服务今天完成验证 1127","uuid":"1f1e27d5-b971-6920-97d5-0242ac1e0002"},{"columnId":"19578536","effort":null,"id":"18847","kind":"task","laneId":"589fd49624940cc9","owners":["地福"],"status":"doing","title":"查到55策略每天固定只扫前 10000 条 listing，而这 10000 条在本周一、周二已经做过日本积分，落在本周的去重窗口内，所以今天 9890 条被判重复，+上被其他过滤的，所以只剩 3 条新增-11.20线上观察-1124已发版，待观察-1126业务观察","uuid":"1f1e3f7d-183d-6e50-a5b5-0242ac1e0002"},{"columnId":"19578536","effort":null,"id":"19433","kind":"task","laneId":"589fd49624940cc9","owners":["冉维"],"status":"doing","title":"测试-Integral_PointDeal_Task 增加服务去获取数据更新明细表的数据服务执行更新","uuid":"1f1e93bc-25ee-6160-a007-0242ac180003"},{"columnId":"19578536","effort":null,"id":"19464","kind":"task","laneId":"589fd49624940cc9","owners":["冉维"],"status":"doing","title":"测试-验收层级促销清理脏数据","uuid":"1f1e967d-3bc3-6100-b528-0242ac180003"},{"columnId":"19578537","effort":null,"id":"19112","kind":"task","laneId":"589fd49624940cc9","owners":["敬平"],"status":"done","title":"旧版新品覆盖率低-1124 分情况处理，1、数据源本身没有；2、数据源有没跑到；-1126 继续观察","uuid":"1f1e7070-e43b-6d80-b6c5-0242ac180003"},{"columnId":"19578537","effort":null,"id":"18672","kind":"task","laneId":"589fd49624940cc9","owners":["立鹏"],"status":"done","title":"层级促销导入取消MSKU xlsl文件页面等待时间过长，优化调整：先将导入数据落表后在后台处理业务，前端快速响应结果1.导入xlsl文件数据接口调整先插入数据入库，不做其它操作；2.新加定时任务处理新导入的数据，其它逻辑不变；","uuid":"1f1e3164-474f-6b20-a9b3-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18919","kind":"task","laneId":"589fd49624940cc9","owners":["冉维","地福"],"status":"done","title":"线上问题：层级策略有策略两天还未未执行问题处理进度：已说明根据店铺+优先级执行，还没执行到。但晓燕觉得执行很慢。需要地福查具体原因-11.20申请架构介入，-11.23需继续升级，明确改造方案-1124 pod已加，待观察","uuid":"1f1e486f-1d27-6e20-adae-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"19351","kind":"task","laneId":"589fd49624940cc9","owners":["敬平"],"status":"done","title":"处理BI库批量实体队列表中上传数据因换行符无法正常导入到DWS库问题-1126 已修复","uuid":"1f1e899b-d93d-6b00-a411-0242ac180003"},{"columnId":"19578537","effort":null,"id":"18851","kind":"task","laneId":"589fd49624940cc9","owners":["立鹏"],"status":"done","title":"A+对外接口数据处理的任务执行有异常爆错，优化代码增加日志记录；调整任务改为MQ队列执行提升效率与监控能力方便后续排查问题;调整优化代码","uuid":"1f1e3fc9-5416-6910-a5e2-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18968","kind":"task","laneId":"589fd49624940cc9","owners":["志鹏"],"status":"done","title":"A+ 对外接口调整为MQ队列 -- 测试","uuid":"1f1e4c9a-0f72-6ef0-9d1f-0242ac180003"},{"columnId":"19578537","effort":null,"id":"18554","kind":"task","laneId":"589fd49624940cc9","owners":["地福"],"status":"done","title":"线上问题：广告黑名单问题查询（产品维度黑名单过期了未开启）处理进度：产品维度 渠道sku 有一次开启的限制条件-11.19出方案（确认转需求）23号核对思路（已处理）24号上线","uuid":"1f1e27d8-9158-6ca0-9708-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18911","kind":"task","laneId":"589fd49624940cc9","owners":["冉维"],"status":"done","title":"测试-层级促销导入取消MSKU功能， xlsl文件数据量过大时页面等待时间过长，需要优化调整1.导入xlsl文件数据接口调整先插入数据入库，不做其它操作；2.新加定时任务处理新导入的数据，其它逻辑不变；","uuid":"1f1e483e-9313-6780-9e68-0242ac1f0005"},{"columnId":"19578539","effort":null,"id":"18689","kind":"story","laneId":"589fd49624940cc9","owners":["立鹏"],"status":"done","title":"层级促销导入取消MSKU功能， xlsl文件数据量过大时页面等待时间过长，需要优化调整1.导入xlsl文件数据接口调整先插入数据入库，不做其它操作；2.新加定时任务处理新导入的数据，其它逻辑不变；","uuid":"1f1e3263-8291-6030-b41e-0242ac1e0002","summary":"层级促销导入取消MSKU功能， xlsl文件数据量过大时页面等待时间过长，需要优化调整1.…","summarySource":"层级促销导入取消MSKU功能， xlsl文件数据量过大时页面等待时间过长，需要优化调整1.导入xlsl文件数据接口调整先插入数据入库，不做其它操作；2.新加定时任务处理新导入的数据，其它逻辑不变；"},{"columnId":"19578539","effort":8,"id":"18708","kind":"story","laneId":"589fd49624940cc9","owners":["地福","志鹏"],"status":"done","title":"线上运维任务模板：线上问题：广告黑名单问题查询（产品维度黑名单过期了未开启）处理目标：B0CV8SG5W2_ASIN汇总报告_仿真优质绿染色苔藓 产品维度未开启问题查询完成时间：2026-11-17 19:53:30处理进度：产品维度 渠道sku 有一次开启的限制条件","uuid":"1f1e32df-62ab-6360-a684-0242ac1e0002","summary":"线上问题：广告黑名单问题查询（产品维度黑名单过期了未开启）","summarySource":"线上运维任务模板：线上问题：广告黑名单问题查询（产品维度黑名单过期了未开启）处理目标：B0CV8SG5W2_ASIN汇总报告_仿真优质绿染色苔藓 产品维度未开启问题查询完成时间：2026-11-17 19:53:30处理进度：产品维度 渠道sku 有一次开启的限制条件"},{"columnId":"19578539","effort":6,"id":"19229","kind":"story","laneId":"589fd49624940cc9","owners":["敬平"],"status":"done","title":"线上运维任务模板：线上问题：旧版广告新品覆盖率低处理目标：提升新品覆盖率完成时间：2026-11-25处理进度：11月23日，完成问题排查11月24日，完成代码调整","uuid":"1f1e7b3e-1f9c-6070-9a66-0242ac1f0005","summary":"线上问题：旧版广告新品覆盖率低","summarySource":"线上运维任务模板：线上问题：旧版广告新品覆盖率低处理目标：提升新品覆盖率完成时间：2026-11-25处理进度：11月23日，完成问题排查11月24日，完成代码调整"},{"columnId":"19578539","effort":6,"id":"18798","kind":"story","laneId":"589fd49624940cc9","owners":["冉维","地福"],"status":"done","title":"11.19完成-线上问题：日本积分-55策略 覆盖率低处理进度：冉维：查到55策略每天固定只扫前 10000 条 listing，而这 10000 条在本周一、周二已经做过日本积分，落在本周的去重窗口内，所以今天 9890 条被判重复，+上被其他过滤的，所以只剩 3 条新增地福：等地福细看开始时间：2026-11-18 17:00结束时间：还未，地福再看","uuid":"1f1e3bce-0897-6380-91c6-0242ac1e0002","summary":"11.19完成-线上问题：日本积分-55策略 覆盖率低","summarySource":"11.19完成-线上问题：日本积分-55策略 覆盖率低处理进度：冉维：查到55策略每天固定只扫前 10000 条 listing，而这 10000 条在本周一、周二已经做过日本积分，落在本周的去重窗口内，所以今天 9890 条被判重复，+上被其他过滤的，所以只剩 3 条新增地福：等地福细看开始时间：2026-11-18 17:00结束时间：还未，地福再看"},{"columnId":"19578539","effort":null,"id":"18850","kind":"story","laneId":"589fd49624940cc9","owners":["立鹏","志鹏"],"status":"done","title":"11.19发现高级A+推送数据到队列业务执行异常；1.A+对外接口推入的数据处理进入A+队列服务执行有异常，优化代码增加日志记录；2.调整任务改为MQ队列执行提升效率与监控能力方便后续排查问题","uuid":"1f1e3fc8-64ad-60c0-ab21-0242ac1e0002","summary":"11.19发现高级A+推送数据到队列业务执行异常；1.A+对外接口推入的数据处理进入A+队…","summarySource":"11.19发现高级A+推送数据到队列业务执行异常；1.A+对外接口推入的数据处理进入A+队列服务执行有异常，优化代码增加日志记录；2.调整任务改为MQ队列执行提升效率与监控能力方便后续排查问题"},{"columnId":"19578537","effort":null,"id":"18453","kind":"task","laneId":"47ad659c93316284","owners":[],"status":"done","title":"国泽开发中，周三11.26内结束","uuid":"1f1e22ac-c77e-6e80-8123-0242ac1e0002"},{"columnId":"19578539","effort":3,"id":"18418","kind":"story","laneId":"47ad659c93316284","owners":["冉维"],"status":"done","title":"US01：恢复爬虫上传首图视频用户故事作为使用爬虫上传首图视频的运营人员，我希望解决紫鸟浏览器拦截导致的上传失败问题，以便正常完成首图视频上传。","uuid":"1f1e2295-1de2-65a0-9a9e-0242ac1e0002","summary":"US01：恢复爬虫上传首图视频","summarySource":"US01：恢复爬虫上传首图视频用户故事作为使用爬虫上传首图视频的运营人员，我希望解决紫鸟浏览器拦截导致的上传失败问题，以便正常完成首图视频上传。"},{"columnId":"19578537","effort":null,"id":"18497","kind":"task","laneId":"632c9f35ff73c836","owners":["居瓦"],"status":"done","title":"1、组装Json路径未修改，使用的开发本地路径2、恢复Listing未判断删除状态","uuid":"1f1e25cc-3d19-6770-bf0b-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18568","kind":"task","laneId":"632c9f35ff73c836","owners":["居瓦"],"status":"done","title":"线上问题：zhcxkj-center-strategy出现oom，导致策略中台处理报错处理目标：1.找出zhcxkj-center-strategy出现oom的原因，如果是自己团队的问题，需要跟进修复，如果是其他团队的问题，需要反馈出去让其修复完成时间：2026年11月18日-11.20查看下是否异常跟进处理进度：11.24发版1124已发版待观察，找回关闭服务","uuid":"1f1e2a26-5642-6500-9aea-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18454","kind":"task","laneId":"632c9f35ff73c836","owners":["志鹏"],"status":"done","title":"自动恢复误删 Listing-测试卡片 11.17 完成","uuid":"1f1e22ad-5fb1-65e0-ac4a-0242ac170007"},{"columnId":"19578539","effort":9,"id":"8757","kind":"story","laneId":"632c9f35ff73c836","owners":["志鹏"],"status":"done","title":"SP3US01：自动恢复误删 Listing-额外插入的开发任务用户故事作为【开发人员或运维人员】，我希望导入包含来源渠道和 MSKU 的表格后，系统能够自动查询原刊登信息并触发恢复刊登，以便批量恢复被误删的 listing，并保留可追溯的执行结果。","uuid":"1f1e2254-bf10-6aa0-809f-0242ac1e0002","summary":"SP3US01：自动恢复误删 Listing-额外插入的开发任务","summarySource":"SP3US01：自动恢复误删 Listing-额外插入的开发任务用户故事作为【开发人员或运维人员】，我希望导入包含来源渠道和 MSKU 的表格后，系统能够自动查询原刊登信息并触发恢复刊登，以便批量恢复被误删的 listing，并保留可追溯的执行结果。"},{"columnId":"19578535","effort":null,"id":"19344","kind":"task","laneId":"dbe6a60b45bd6639","owners":["冉维"],"status":"todo","title":"测试-待线上验证","uuid":"1f1e8961-fe5b-6270-9df8-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18372","kind":"task","laneId":"dbe6a60b45bd6639","owners":["冉维"],"status":"done","title":"测试-重置部分+回写今天完成 11.17完成","uuid":"1f1e226c-f085-6e60-8ea0-0242ac1e0002"},{"columnId":"19578539","effort":3,"id":"15698","kind":"story","laneId":"dbe6a60b45bd6639","owners":["冉维"],"status":"done","title":"#本地仓清库 SKU 新增层级促销服务US01：自动执行本地仓清库 SKU 层级促销作为业务人员，我希望系统每天按上游启用的本地仓清库 SKU 策略自动生成并提交层级促销活动，以便符合清库条件的 SKU 按配置开展促销。","uuid":"1f1e1a2c-b8b3-6ae0-b52e-0242ac1e0002","summary":"#本地仓清库 SKU 新增层级促销服务","summarySource":"#本地仓清库 SKU 新增层级促销服务US01：自动执行本地仓清库 SKU 层级促销作为业务人员，我希望系统每天按上游启用的本地仓清库 SKU 策略自动生成并提交层级促销活动，以便符合清库条件的 SKU 按配置开展促销。"},{"columnId":"19578533","effort":3,"id":"15696","kind":"story","laneId":"0e2c3d2e6f061872","owners":["地福","立鹏"],"status":"todo","title":"US01：层级促销执行监控作为运营人员，我希望在每日异常监控页面查看层级促销的执行率和未执行数量，以便及时发现层级促销未执行或执行不全的问题。阶段：先出方案，出完方案评估开发工作量是否要两天，再确定完成到什么程度","uuid":"1f1e1a2c-a371-6d60-8dae-0242ac1e0002","summary":"US01：层级促销执行监控","summarySource":"US01：层级促销执行监控作为运营人员，我希望在每日异常监控页面查看层级促销的执行率和未执行数量，以便及时发现层级促销未执行或执行不全的问题。阶段：先出方案，出完方案评估开发工作量是否要两天，再确定完成到什么程度"},{"columnId":"19578536","effort":null,"id":"18801","kind":"task","laneId":"0e2c3d2e6f061872","owners":["立鹏"],"status":"doing","title":"监控前端页面开发，接口目前未提供先开发页面端适配","uuid":"1f1e3bdd-57ab-6280-af89-0242ac170007"},{"columnId":"19578536","effort":null,"id":"18856","kind":"task","laneId":"0e2c3d2e6f061872","owners":[],"status":"doing","title":"层级促销前端页面有ui吗-放在广告监控BI看板","uuid":"1f1e407c-e58c-6ae0-9707-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18294","kind":"task","laneId":"0e2c3d2e6f061872","owners":["地福"],"status":"done","title":".net 层级促销监控代码实现","uuid":"1f1e2230-efa6-6bf0-89ce-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18293","kind":"task","laneId":"0e2c3d2e6f061872","owners":["地福"],"status":"done","title":"前端对接后台接口","uuid":"1f1e2230-2332-63a0-8907-0242ac170007"},{"columnId":"19578533","effort":6,"id":"18201","kind":"story","laneId":"1aea40bb864adcb3","owners":["善泳"],"status":"todo","title":"US01：梳理并解决广告系统慢 SQL用户故事作为广告系统维护人员，我希望识别、分析并优化影响业务操作的慢 SQL，以便缩短相关操作的响应时间，同时避免优化引入功能或性能回退。","uuid":"1f1e1a2c-b4be-6dc0-86b1-0242ac1e0002","summary":"US01：梳理并解决广告系统慢 SQL","summarySource":"US01：梳理并解决广告系统慢 SQL用户故事作为广告系统维护人员，我希望识别、分析并优化影响业务操作的慢 SQL，以便缩短相关操作的响应时间，同时避免优化引入功能或性能回退。"},{"columnId":"19578536","effort":null,"id":"18860","kind":"task","laneId":"1aea40bb864adcb3","owners":["善泳"],"status":"doing","title":"上线targettype = 1后观察验证11.24审核完，上线11.26 继续修改并审核11.27 待观察","uuid":"1f1e40a0-1ef8-6b50-96cc-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18551","kind":"task","laneId":"1aea40bb864adcb3","owners":["善泳"],"status":"done","title":"aad_campaign表的insert 查询慢SQL优化-2026年11月18日完成","uuid":"1f1e27c7-1a45-6670-aaae-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18552","kind":"task","laneId":"1aea40bb864adcb3","owners":["善泳"],"status":"done","title":"targettype = 1的SQL优化","uuid":"1f1e27c8-50c5-6ed0-b693-0242ac170007"},{"columnId":"19578534","effort":3,"id":"18202","kind":"story","laneId":"db675addc2aeacbb","owners":["居瓦","志鹏"],"status":"doing","title":"US01：提升销售漏斗看板性能用户故事作为销售管理人员，我希望销售漏斗看板能够及时加载和响应筛选操作，以便顺畅查看各阶段数据并分析转化情况。","uuid":"1f1e1a2c-b2ff-6430-8d97-0242ac1e0002","summary":"US01：提升销售漏斗看板性能","summarySource":"US01：提升销售漏斗看板性能用户故事作为销售管理人员，我希望销售漏斗看板能够及时加载和响应筛选操作，以便顺畅查看各阶段数据并分析转化情况。"},{"columnId":"19578535","effort":null,"id":"19220","kind":"task","laneId":"db675addc2aeacbb","owners":["居瓦"],"status":"todo","title":"下载去年11月和今年11月周数据","uuid":"1f1e7aeb-e259-64c0-ba9c-0242ac180003"},{"columnId":"19578536","effort":null,"id":"18227","kind":"task","laneId":"db675addc2aeacbb","owners":["居瓦"],"status":"doing","title":"1.避免Oom 2，报告处理全流程独立 3.支持优先下载的周期选择 4. 修复钉钉告警异常问题今天11.17跟进2026年11月19日下载完成-11.20 预计23日下载完成月度数据-11.23 内部审核数据完，发业务-1124 列出报错原因（确认数据清洗是否完成）-1126 还有几十个店铺没下载，需继续处理--1127 待观察","uuid":"1f1e1a72-d27e-6f90-b685-0242ac170007"},{"columnId":"19578536","effort":null,"id":"19224","kind":"task","laneId":"db675addc2aeacbb","owners":["志鹏"],"status":"doing","title":"验证并查看线上数据（是否清洗）","uuid":"1f1e7b08-5204-6090-95b7-0242ac1f0005"},{"columnId":"19578533","effort":8,"id":"11499","kind":"story","laneId":"e24baaa79b358ebe","owners":[],"status":"todo","title":"SP 广告活动每日异常监控US02：追溯单个指标的历史监控明细作为【运营人员或技术支持人员】，我希望【从监控结果列表打开单个指标的明细，查看过去一个月每日的数量、执行状态、耗时、成功率或策略执行完整性数据】，以便【判断异常是单日突变、连续发生还是长期存在，为排查提供依据】。","uuid":"1f1e1a2c-b116-6260-a80f-0242ac1e0002","summary":"SP 广告活动每日异常监控","summarySource":"SP 广告活动每日异常监控US02：追溯单个指标的历史监控明细作为【运营人员或技术支持人员】，我希望【从监控结果列表打开单个指标的明细，查看过去一个月每日的数量、执行状态、耗时、成功率或策略执行完整性数据】，以便【判断异常是单日突变、连续发生还是长期存在，为排查提供依据】。"},{"columnId":"19578536","effort":null,"id":"18562","kind":"task","laneId":"e24baaa79b358ebe","owners":["地福"],"status":"doing","title":"2：旧版广告-监控模块-手动策略分子分母校验---手动的(11.16号)看只有一个策略对应不上，待观察需确认分子分母的维度是否一致-11.19完成-11.20观察-11.23明确异常场景，和改造完成-1124需协助（优先处理）-1126 有卡点，待讨论解决--1127报告去重，自动策略，手动策略待排查","uuid":"1f1e2851-b077-6fe0-95f6-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18338","kind":"task","laneId":"e24baaa79b358ebe","owners":["地福"],"status":"done","title":"报告分子分母逻辑改动11.17发版","uuid":"1f1e224d-20d9-63f0-9f82-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18225","kind":"task","laneId":"e24baaa79b358ebe","owners":["地福"],"status":"done","title":"1：校验监控 实体分子分母校验","uuid":"1f1e1a5b-bd4e-6540-8710-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18383","kind":"task","laneId":"e24baaa79b358ebe","owners":["地福"],"status":"done","title":"自动策略分子需加上被过滤的总数（不同的天可能会用到同一个obs地址）","uuid":"1f1e2271-7110-6290-bfc1-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18234","kind":"task","laneId":"e24baaa79b358ebe","owners":["立鹏"],"status":"done","title":"SP广告活动每日异常监控前端界面开发，BI看板展示功能","uuid":"1f1e1a91-0fcb-64f0-9305-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18931","kind":"task","laneId":"d3cd0f0c993cb0eb","owners":[],"status":"done","title":"线上观察指标-1126 待观察","uuid":"1f1e48ac-129c-62c0-b9d0-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18240","kind":"task","laneId":"d3cd0f0c993cb0eb","owners":["敬平"],"status":"done","title":"确定实现方案-2026年11月17日-开发-2026年11月18日-自测","uuid":"1f1e1ab2-3ceb-6200-b270-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18690","kind":"task","laneId":"d3cd0f0c993cb0eb","owners":["志鹏"],"status":"done","title":"打标执行率监控 -- 测试","uuid":"1f1e326d-096f-63a0-aae1-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18242","kind":"task","laneId":"d3cd0f0c993cb0eb","owners":["敬平"],"status":"done","title":"实现具体指标并落库（落到地福原有aad_monitor_data表）","uuid":"1f1e1abd-3652-61b0-9914-0242ac1e0002"},{"columnId":"19578539","effort":3,"id":"18203","kind":"story","laneId":"d3cd0f0c993cb0eb","owners":["敬平","志鹏"],"status":"done","title":"US01：监控关联策略类型打标执行率用户故事作为关联策略类型打标的运营人员，我希望监控应打标数量、实际打标数量及执行率，以便及时发现打标未完成的情况。","uuid":"1f1e1a2c-af48-6340-bfed-0242ac1e0002","summary":"US01：监控关联策略类型打标执行率","summarySource":"US01：监控关联策略类型打标执行率用户故事作为关联策略类型打标的运营人员，我希望监控应打标数量、实际打标数量及执行率，以便及时发现打标未完成的情况。"},{"columnId":"19578537","effort":null,"id":"18857","kind":"task","laneId":"7ff47dcd8cbb86ef","owners":["地福"],"status":"done","title":"批量导入执行及时率方案","uuid":"1f1e4085-d096-6fa0-be88-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18858","kind":"task","laneId":"7ff47dcd8cbb86ef","owners":["地福"],"status":"done","title":"批量导入执行及时率+实现-11.24完成","uuid":"1f1e4086-3f91-6610-b15b-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"19221","kind":"task","laneId":"7ff47dcd8cbb86ef","owners":["志鹏"],"status":"done","title":"批量导入执行及时率监控 -- 测试","uuid":"1f1e7af2-8609-6a80-aa05-0242ac180003"},{"columnId":"19578539","effort":3,"id":"18204","kind":"story","laneId":"7ff47dcd8cbb86ef","owners":["地福"],"status":"done","title":"US01：监控批量导入执行及时率用户故事作为批量导入任务的管理人员，我希望查看导入数据的执行及时率，以便了解数据是否在规定时间内完成执行。","uuid":"1f1e1a2c-ad43-6a20-9d34-0242ac1e0002","summary":"US01：监控批量导入执行及时率","summarySource":"US01：监控批量导入执行及时率用户故事作为批量导入任务的管理人员，我希望查看导入数据的执行及时率，以便了解数据是否在规定时间内完成执行。"},{"columnId":"19578537","effort":null,"id":"18253","kind":"task","laneId":"d414e4fb130fd12d","owners":["善泳"],"status":"done","title":"新旧广告系统共用报告请求-旧版广告的用户搜索词报告增加报告创建字段","uuid":"1f1e1b52-ed89-61c0-99a9-0242ac170007"},{"columnId":"19578537","effort":null,"id":"19222","kind":"task","laneId":"d414e4fb130fd12d","owners":["志鹏"],"status":"done","title":"新旧广告系统共用报告请求 -- 测试","uuid":"1f1e7af3-e0d5-6800-a28f-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18558","kind":"task","laneId":"d414e4fb130fd12d","owners":["善泳","敬平"],"status":"done","title":"新版广告报告拉取修改为调用旧版接口获取报告id-11.23完成","uuid":"1f1e280c-c471-67f0-8575-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18556","kind":"task","laneId":"d414e4fb130fd12d","owners":["善泳"],"status":"done","title":"旧版广告的剩余报告增加报告创建字段","uuid":"1f1e2808-891b-6780-a7bf-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18557","kind":"task","laneId":"d414e4fb130fd12d","owners":["善泳"],"status":"done","title":"旧版广告新增对外接口查询报告id给新版广告","uuid":"1f1e280a-66d5-6750-99c8-0242ac170007"},{"columnId":"19578539","effort":6,"id":"18206","kind":"story","laneId":"d414e4fb130fd12d","owners":["善泳"],"status":"done","title":"US01：新旧广告系统共用报告请求用户故事作为同时使用新旧广告系统的用户，我希望同一份报告只向后台请求一次，并供两个系统使用，以便避免重复请求。","uuid":"1f1e1a2c-ab61-6bd0-9790-0242ac1e0002","summary":"US01：新旧广告系统共用报告请求","summarySource":"US01：新旧广告系统共用报告请求用户故事作为同时使用新旧广告系统的用户，我希望同一份报告只向后台请求一次，并供两个系统使用，以便避免重复请求。"},{"columnId":"19578537","effort":null,"id":"18250","kind":"task","laneId":"df65cefb91967a67","owners":["地福"],"status":"done","title":"sbv 核查 图片状态=已审核+上架状态等于是 +作废状态=未作废+视频创建时间匹配建宝组","uuid":"1f1e1ad3-b04a-6470-ad6f-0242ac170007"},{"columnId":"19578537","effort":null,"id":"18932","kind":"task","laneId":"df65cefb91967a67","owners":["志鹏"],"status":"done","title":"SBV策略引用产品库视频筛选逻辑调整 -- 测试","uuid":"1f1e48ae-5d74-6750-b09e-0242ac180003"},{"columnId":"19578539","effort":5,"id":"14239","kind":"story","laneId":"df65cefb91967a67","owners":["地福","志鹏"],"status":"done","title":"SBV策略引用产品库视频筛选逻辑调整US01：引用符合条件的产品库视频作为【SBV策略使用者】，我希望【策略仅从符合筛选要求的产品库 listing 视频中选择引用视频】，以便【避免引用未审核或不符合使用条件的视频】。","uuid":"1f1e1a2c-a9a8-6b90-b69b-0242ac1e0002","summary":"SBV策略引用产品库视频筛选逻辑调整","summarySource":"SBV策略引用产品库视频筛选逻辑调整US01：引用符合条件的产品库视频作为【SBV策略使用者】，我希望【策略仅从符合筛选要求的产品库 listing 视频中选择引用视频】，以便【避免引用未审核或不符合使用条件的视频】。"},{"columnId":"19578537","effort":null,"id":"18230","kind":"task","laneId":"ea996bd6e411dbd2","owners":["居瓦"],"status":"done","title":"1. 全店铺1400w历史活动处理2026年11月18日同步完成","uuid":"1f1e1a77-a586-6fe0-b934-0242ac170007"},{"columnId":"19578537","effort":null,"id":"19235","kind":"task","laneId":"ea996bd6e411dbd2","owners":["居瓦"],"status":"done","title":"定时任务查找数据时不能通过off_amazon_settings is null 去判断；可能为另一种类型","uuid":"1f1e7d4e-9e45-6770-a9fd-0242ac180003"},{"columnId":"19578537","effort":null,"id":"18800","kind":"task","laneId":"ea996bd6e411dbd2","owners":["志鹏"],"status":"done","title":"定时任务处理新增活动 -- 测试","uuid":"1f1e3bd0-6a44-6dc0-a74f-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18799","kind":"task","laneId":"ea996bd6e411dbd2","owners":["志鹏"],"status":"done","title":"全店铺历史活动数据修正检查 -- 测试","uuid":"1f1e3bcf-f3eb-6d00-b054-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18231","kind":"task","laneId":"ea996bd6e411dbd2","owners":["居瓦"],"status":"done","title":"2. 增量定时任务处理新增活动","uuid":"1f1e1a77-dcaa-68e0-813a-0242ac1e0002"},{"columnId":"19578539","effort":3,"id":"18207","kind":"story","laneId":"ea996bd6e411dbd2","owners":["居瓦","志鹏"],"status":"done","title":"US01：统一 SP 广告活动的投放渠道用户故事作为广告运营人员，我希望存量及新增的 SP 广告活动都仅限亚马逊渠道投放，以便保持活动投放范围一致。","uuid":"1f1e1a2c-a768-6f00-8be3-0242ac1e0002","summary":"US01：统一 SP 广告活动的投放渠道","summarySource":"US01：统一 SP 广告活动的投放渠道用户故事作为广告运营人员，我希望存量及新增的 SP 广告活动都仅限亚马逊渠道投放，以便保持活动投放范围一致。"},{"columnId":"19578534","effort":7,"id":"18209","kind":"story","laneId":"f0708a9bc955a921","owners":["敬平","志鹏","冉维"],"status":"doing","title":"FBA高销及五大节日汇总报告拆分US01：使用拆分后的ASIN汇总报告执行策略作为【旧版广告系统的策略使用人员】，我希望【在原报告位置选择重点 ASIN 每日计算的9份汇总报告，并让策略引用所选报告最新成功结果】，以便【更快获得持续更新的策略条件数据】。","uuid":"1f1e1a2c-a54c-6030-9974-0242ac1e0002","summary":"FBA高销及五大节日汇总报告拆分","summarySource":"FBA高销及五大节日汇总报告拆分US01：使用拆分后的ASIN汇总报告执行策略作为【旧版广告系统的策略使用人员】，我希望【在原报告位置选择重点 ASIN 每日计算的9份汇总报告，并让策略引用所选报告最新成功结果】，以便【更快获得持续更新的策略条件数据】。"},{"columnId":"19578535","effort":null,"id":"19440","kind":"task","laneId":"f0708a9bc955a921","owners":[],"status":"todo","title":"测试-直接上生产跑","uuid":"1f1e9401-e62e-6270-a301-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18503","kind":"task","laneId":"f0708a9bc955a921","owners":["敬平"],"status":"done","title":"新增汇总报告二级缓存服务适配调整","uuid":"1f1e25f5-0e8a-6e70-8f42-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18505","kind":"task","laneId":"f0708a9bc955a921","owners":["敬平"],"status":"done","title":"下游使用服务适配调整（服务）","uuid":"1f1e25f8-82cb-6890-a5ec-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18504","kind":"task","laneId":"f0708a9bc955a921","owners":["敬平"],"status":"done","title":"下游使用服务适配调整（web界面）","uuid":"1f1e25f6-057b-6bc0-bc9c-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18500","kind":"task","laneId":"f0708a9bc955a921","owners":["敬平"],"status":"done","title":"新增表及结构确认","uuid":"1f1e25f1-8e9c-6e60-84a3-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18502","kind":"task","laneId":"f0708a9bc955a921","owners":["敬平"],"status":"done","title":"新增汇总报告核心服务实现-1125 完成","uuid":"1f1e25f3-4df4-6820-80c7-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18499","kind":"task","laneId":"f0708a9bc955a921","owners":["立鹏"],"status":"done","title":"按节日与FBA交集或销量条件纳入ASIN数据同步到DWS2026年11月18日开发完成2026年11月19日提测","uuid":"1f1e25e8-6667-6080-bb66-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"19147","kind":"task","laneId":"f0708a9bc955a921","owners":["冉维"],"status":"done","title":"测试-前端界面","uuid":"1f1e71df-b6ce-66b0-9e8d-0242ac180003"},{"columnId":"19578537","effort":null,"id":"18501","kind":"task","laneId":"f0708a9bc955a921","owners":["敬平"],"status":"done","title":"web展示页面完成-11.20完成","uuid":"1f1e25f2-3656-6b20-bdab-0242ac1e0002"},{"columnId":"19578537","effort":null,"id":"18845","kind":"task","laneId":"f0708a9bc955a921","owners":["冉维"],"status":"done","title":"测试-fba高效/五大节日listing同步到dws-11.20完成测试","uuid":"1f1e3f65-0f53-6df0-83c5-0242ac1e0002"},{"columnId":"19578534","effort":6,"id":"8774","kind":"story","laneId":"19ef3294fa06477f","owners":["居瓦"],"status":"doing","title":"SP3US5.1：批量创建支持企业广告位和受众竞价增幅用户故事作为广告投放人员，我希望在现有广告批量导入模板中，通过 Placement 字段填写企业广告位或受众枚举，并通过 Percentage 字段填写对应竞价增幅比例，以便在批量创建广告活动时，同步创建企业广告位和受众的竞价增幅配置，同时保持原有批量导入逻辑不变。","uuid":"1f1e1a2c-a135-6da0-a308-0242ac1e0002","summary":"SP3US5.1：批量创建支持企业广告位和受众竞价增幅","summarySource":"SP3US5.1：批量创建支持企业广告位和受众竞价增幅用户故事作为广告投放人员，我希望在现有广告批量导入模板中，通过 Placement 字段填写企业广告位或受众枚举，并通过 Percentage 字段填写对应竞价增幅比例，以便在批量创建广告活动时，同步创建企业广告位和受众的竞价增幅配置，同时保持原有批量导入逻辑不变。"},{"columnId":"19578536","effort":null,"id":"19434","kind":"task","laneId":"19ef3294fa06477f","owners":["志鹏"],"status":"doing","title":"测试-批量创建支持企业广告位和受众竞价增幅","uuid":"1f1e93be-22d6-6c30-99ed-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"19366","kind":"task","laneId":"19ef3294fa06477f","owners":["居瓦"],"status":"done","title":"编码，自测1126 今天完成","uuid":"1f1e8ac1-4581-6bd0-bbb3-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"19110","kind":"task","laneId":"19ef3294fa06477f","owners":["居瓦"],"status":"done","title":"开发明确开发周期-11.23-1124 评估完成","uuid":"1f1e706c-074c-6ec0-87ba-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"19365","kind":"task","laneId":"19ef3294fa06477f","owners":["居瓦"],"status":"done","title":"技术方案设计，改动点明确，形成文档","uuid":"1f1e8ac0-a543-63b0-96e0-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"18954","kind":"task","laneId":"711f43956524fb6b","owners":["善泳"],"status":"done","title":"优惠券策略的listing执行增加监控-11.24 完成","uuid":"1f1e4b78-de96-66f0-9a4d-0242ac180003"},{"columnId":"19578537","effort":null,"id":"19008","kind":"task","laneId":"711f43956524fb6b","owners":["善泳"],"status":"done","title":"自测-优惠券策略的listing执行增加监控-1124 完成","uuid":"1f1e6da1-a17e-6f40-86cc-0242ac180003"},{"columnId":"19578537","effort":null,"id":"19333","kind":"task","laneId":"711f43956524fb6b","owners":["冉维"],"status":"done","title":"测试-优惠券监控","uuid":"1f1e874a-0072-6260-9a76-0242ac180003"},{"columnId":"19578539","effort":null,"id":"18953","kind":"story","laneId":"711f43956524fb6b","owners":["善泳"],"status":"done","title":"用户故事作为优惠券运营人员，我希望监控优惠券执行率，以便了解应执行的优惠券数据中，有多少已完成执行或被过滤，并及时发现未处理的数据。","uuid":"1f1e4b74-30b0-6d90-83ff-0242ac1f0005","summary":"","summarySource":"用户故事作为优惠券运营人员，我希望监控优惠券执行率，以便了解应执行的优惠券数据中，有多少已完成执行或被过滤，并及时发现未处理的数据。"},{"columnId":"19578537","effort":null,"id":"19265","kind":"task","laneId":"0d624462c3131489","owners":["立鹏"],"status":"done","title":"分析高级A+的api接口，看那些可以对接https://developer-docs.amazon/sp-api/lang-zh_CN/docs/a-plus-premium-modules#premiumfullbackgroundimagemodule目前可对接模板：图片、文案类型；视频目前不对接","uuid":"1f1e7f09-41a6-66e0-baa5-0242ac1f0005"},{"columnId":"19578537","effort":null,"id":"19425","kind":"task","laneId":"0d624462c3131489","owners":["立鹏"],"status":"done","title":"高级A+ 新模板对接实现；在原有的高级A+接口上开发，新增支持高级A+图片与文案的模型功能；开发中，需要生产测试数据","uuid":"1f1e93a4-91b9-6180-9397-0242ac1f0005"},{"columnId":"19578539","effort":null,"id":"19264","kind":"story","laneId":"0d624462c3131489","owners":["立鹏","志鹏"],"status":"done","title":"高级 A+（Premium A+）新模板接口对接与对外推送能力开发。作为内容运营，我希望通过统一的 JSON 模板结构描述高级 A+ 页面（由若干 Premium 模块有序组成），以便一次提交即可生成符合亚马逊规范的高级 A+ 内容","uuid":"1f1e7f06-7e6a-6990-b2fa-0242ac1f0005","summary":"高级 A+（Premium A+）新模板接口对接与对外推送能力开发","summarySource":"高级 A+（Premium A+）新模板接口对接与对外推送能力开发。作为内容运营，我希望通过统一的 JSON 模板结构描述高级 A+ 页面（由若干 Premium 模块有序组成），以便一次提交即可生成符合亚马逊规范的高级 A+ 内容"}]},"okr":{"sourceUrl":"https://alidocs.dingtalk.com/i/nodes/amweZ92PV6vn7K4XuRyrd7DmVxEKBD6p?utm_scene=team_space\u0026iframeQuery=sheet_range%3Ds1_0_0_1_1","sourceTitle":"FBA价值流11-12月OKR+绩效评价模版","sheet":"FBA价值流OKR","teamFilter":"共享-PST2","sourceTeamValue":"共享PST2","complete":true,"identityVerified":true,"periodVerified":true,"snapshot":"2026-11-27T06:42:33.272Z","period":"2026年11-12月","periodStart":"2026-11-01","periodEnd":"2026-12-31","objectives":[{"id":"okr-o-1","label":"O1","dimension":"产品功能","title":"目标（O4）：构建数据驱动的增长决策支持能力，让GST团队从“凭经验做实验”转向“基于数据发现问题、制定策略、验证效果”","description":"围绕AI选品、AI决策运营、AI广告、AI备货等战略能力，将“功能覆盖”转化为可量化的经营增益。","krs":[{"id":"okr-r100","text":"KR1：完成曝光→点击→加购→成交核心增长漏斗的数据建设","targetDisplay":"1","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F100","sharedKr":"KR1：完成曝光→点击→加购→成交核心增长漏斗的数据建设，支持按市场、店铺、ASIN及周/月维度分析，核心指标覆盖率≥95%","history":[]},{"id":"okr-r102","text":"KR2：销售漏斗看板数据准确率≥98%，T+1更新达成率≥95%","targetDisplay":"销售漏斗看板数据准确率≥98%，T+1更新达成率≥95%","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F102","sharedKr":"KR2：建立核心指标统一口径、数据校验及异常监控机制，数据准确率≥98%，T+1更新达成率≥95%","history":[]}]},{"id":"okr-o-2","label":"O2","dimension":"技术","title":"O1：提升GST批量管理listing（刊登、调价、促销）的便捷性","description":"围绕Listing、备货、广告三大关键经营链路的稳定性、安全和风险控制，确保增长不以账号、客户体验和系统风险为代价。","krs":[{"id":"okr-r128","text":"KR1：完成促销监控看板功能，实现监控指标的计算准确率达到100%及100%可视化，异常100%可提示。","targetDisplay":"1","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F128","sharedKr":"团队自行添加的KR","history":[]},{"id":"okr-r129","text":"KR2：层级促销及时执行率，执行率97%（已执行/应执行）","targetDisplay":"0.97","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F129","sharedKr":"团队自行添加的KR","history":[]}]},{"id":"okr-o-3","label":"O3","dimension":"技术","title":"O2：提升广告增长策略的平台化承接能力","description":"围绕Listing、备货、广告三大关键经营链路的稳定性、安全和风险控制，确保增长不以账号、客户体验和系统风险为代价。","krs":[{"id":"okr-r131","text":"KR4：调价策略执行覆盖率，覆盖率97%（应跑/实际提交），时效要求24小时","targetDisplay":"97%，24H","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F131","sharedKr":"KR1：100%支撑广告调价策略24小时内执行","history":[]},{"id":"okr-r133","text":"KR7：广告系统重构100%支持销售进行批量广告活动创建和调整","targetDisplay":"1","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F133","sharedKr":"KR2：广告系统重构100%支持销售进行批量广告活动创建和调整","history":[]},{"id":"okr-r134","text":"KR1：完成广告监控看板功能，实现监控指标的计算准确率达到100%及100%可视化，异常100%可提示。","targetDisplay":"1","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F134","sharedKr":"团队自行添加的KR","history":[]},{"id":"okr-r135","text":"KR2：后台报告及时同步率97%以上，计算公式：报告入库数量/请求数量\u003e97%，时效要求24小时","targetDisplay":"97%，24H","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F135","sharedKr":"团队自行添加的KR","history":[]},{"id":"okr-r136","text":"KR3：关联策略标记及时执行率，97%（已执行/应执行），时效要求4小时","targetDisplay":"97.00%，4H","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F136","sharedKr":"团队自行添加的KR","history":[]},{"id":"okr-r138","text":"KR5：手动策略及时执行率，97%（已执行/应执行），时效要求24小时","targetDisplay":"97%，24H","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F138","sharedKr":"团队自行添加的KR","history":[]},{"id":"okr-r139","text":"KR6：导入队列及时执行率，97%（24小时内执行数量/应执行数量），时效要求24小时","targetDisplay":"97%，24H","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F139","sharedKr":"团队自行添加的KR","history":[]}]},{"id":"okr-o-4","label":"O4","dimension":"过程","title":"目标（O4-1）：提升价值流迭代的交付质量","description":"围绕团队响应力、效率、质量、客户满意度等定义过程改进和优化目标，提升价值流从需求到经营结果的流动效率。","krs":[{"id":"okr-r144","text":"KR1：生产环境缺陷数量不超过5个","targetDisplay":"5","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F144","sharedKr":"KR1：生产环境缺陷数量不超过20 个 ","history":[],"baseline":"0"},{"id":"okr-r149","text":"KR2：用户故事一次性验收通过率大于95%","targetDisplay":"0.95","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F149","sharedKr":"KR2：用户故事一次性验收通过率大于95% ","history":[]}]},{"id":"okr-o-5","label":"O5","dimension":"过程","title":"目标（O4-2）：缩短价值流需求的交付周期","description":"围绕团队响应力、效率、质量、客户满意度等定义过程改进和优化目标，提升价值流从需求到经营结果的流动效率。","krs":[{"id":"okr-r165","text":"KR1：用户故事交付目标、交付日期及developer完成情况100%可视化。","targetDisplay":"1","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F165","sharedKr":"团队自行添加的KR","history":[]}]},{"id":"okr-o-6","label":"O6","dimension":"过程","title":"目标（O3）：降低店铺运营操作风险","description":"围绕团队响应力、效率、质量、客户满意度等定义过程改进和优化目标，提升价值流从需求到经营结果的流动效率。","krs":[{"id":"okr-r174","text":"KR1：重大事故次数0次\n（基于重大事故的定义）","targetDisplay":"0","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F174","sharedKr":"KR1：重大事故次数0次（基于重大事故的定义）","history":[],"baseline":"0"},{"id":"okr-r182","text":"KR2：损失不超10W\n（listing数量不超过60W、作业工时不超过1000人时）","targetDisplay":"损失≤10W","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F182","sharedKr":"KR2：损失不超10W（listing数量不超过60W、作业工时不超过1000人时）","history":[],"baseline":"0"},{"id":"okr-r190","text":"KR3：事故发现时效不超过24小时","targetDisplay":"24H","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F190","sharedKr":"KR3：事故发现时效不超过24小时","history":[]},{"id":"okr-r198","text":"KR4：回退处理时效不超过48小时","targetDisplay":"48H","actual":null,"progress":null,"score":null,"progressVerified":false,"sourceCell":"F198","sharedKr":"KR4：回退处理时效不超过48小时","history":[]}]}]},"commitment":null,"theme":{"id":"team-773c5627","accent":"hsl(319 83% 73%)","hot":"hsl(24 85% 72%)","bg":"hsl(319 48% 8%)","panel":"hsl(319 42% 15%)","hue":319,"type":"PST"}}],"templateVersion":"1.0.0","config":{"schemaVersion":1,"projectName":"FBA价值流","teams":[{"id":"shared-pst2","name":"共享-PST2","type":"PST","okrTeam":"共享-PST2"}],"okr":{"sourceUrl":"https://alidocs.dingtalk.com/i/nodes/amweZ92PV6vn7K4XuRyrd7DmVxEKBD6p?utm_scene=team_space\u0026iframeQuery=sheet_range%3Ds1_0_0_1_1","sheet":"FBA价值流OKR","teamField":"团队"}}}</script><script>
+'use strict';
+const DAY=86400000;
+const present=x=>x!==null&&x!==undefined&&x!=='';
+const finite=x=>typeof x==='number'&&Number.isFinite(x);
+function beijingDay(value=Date.now()){const d=new Date(value);return Number.isFinite(d.getTime())?new Date(d.getTime()+8*3600000).toISOString().slice(0,10):null;}
+function validDate(x){return typeof x==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(x)&&Number.isFinite(Date.parse(x+'T00:00:00+08:00'))&&beijingDay(x+'T00:00:00+08:00')===x;}
+function rate(done,total){return finite(done)&&finite(total)&&done>=0&&total>0&&done<=total?(done/total*100).toFixed(1):'无法计算';}
+function trend(done,total,elapsed,remaining){
+ if(!finite(done)||!finite(total)||!finite(elapsed)||!finite(remaining)||done<0||total<=0||done>total||elapsed<=0||remaining<0)return {label:'数据不足，无法判定',color:'neutral',share:null,projected:null,speed:null};
+ const speed=done/elapsed,projected=Math.min(total,done+speed*remaining),share=projected/total;
+ return {label:share>.85?'正常':share>=.75?'有风险':'无法达成',color:share>.85?'good':share>=.75?'warn':'danger',share,projected,speed};
+}
+function workdays(board,now=Date.now()){
+ if(!board?.workdaysVerified||!validDate(board.begin)||!validDate(board.end)||!Array.isArray(board.workdays))return {elapsed:null,remaining:null};
+ if(board.workdays.some(d=>!validDate(d)||d<board.begin||d>board.end)||new Set(board.workdays).size!==board.workdays.length)return {elapsed:null,remaining:null};
+ const today=beijingDay(now);return {elapsed:board.workdays.filter(d=>d<=today).length,remaining:board.workdays.filter(d=>d>today&&d<=board.end).length};
+}
+function counts(team,kind){
+ const keys=kind==='story'?['todo','doing','testing','done']:kind==='experiment'?['todo','verifying','done']:['todo','doing','done'];
+ return Object.fromEntries(keys.map(k=>[k,team.board?.complete===true?(team.board.cards||[]).filter(c=>c.kind===kind&&c.status===k).length:null]));
+}
+function total(count){return Object.values(count).every(finite)?Object.values(count).reduce((a,b)=>a+b,0):null;}
+function actualColor(kr){
+ if(!present(kr.actual)||!finite(kr.actualNumber)||!finite(kr.targetNumber)||!['min','max'].includes(kr.direction)||!kr.unit)return 'neutral';
+ const a=kr.actualNumber,t=kr.targetNumber,reached=kr.targetOperator==='>'?a>t:kr.targetOperator==='<'?a<t:kr.targetOperator==='='?a===t:kr.direction==='max'?a<=t:a>=t;
+ const gap=t===0?(a===t?0:Infinity):Math.abs(a-t)/Math.abs(t);
+ return reached?'good':gap<=.1+Number.EPSILON?'warn':'danger';
+}
+function okrForecast(okr,now=Date.now()){
+ const krs=(okr?.objectives||[]).flatMap(o=>o.krs||[]),results=[];
+ for(const k of krs){
+  const h=(k.history||[]).filter(p=>p.krId===k.id&&p.krText===k.text&&p.targetNumber===k.targetNumber&&finite(p.normalizedProgress)&&p.normalizedProgress>=0&&p.normalizedProgress<=1&&Number.isFinite(Date.parse(p.snapshot))&&Date.parse(p.snapshot)<=now&&p.periodStart===okr.periodStart&&p.periodEnd===okr.periodEnd&&p.unit===k.unit&&p.direction===k.direction&&p.method===k.method).sort((a,b)=>Date.parse(a.snapshot)-Date.parse(b.snapshot));
+  const b=h.at(-1),a=b?[...h].reverse().find(p=>beijingDay(p.snapshot)!==beijingDay(b.snapshot)):null;
+  if(!okr?.complete||!okr.periodVerified||!validDate(okr.periodStart)||!validDate(okr.periodEnd)||!k.progressVerified||!k.method||!k.unit||!['min','max'].includes(k.direction)||!finite(k.targetNumber)||(!present(k.actual)&&!present(k.progress)&&!present(k.score))||!a||!b){results.push({id:k.id,share:null});continue;}
+  const stop=Date.parse(okr.periodEnd+'T23:59:59+08:00'),speed=(b.normalizedProgress-a.normalizedProgress)/(Date.parse(b.snapshot)-Date.parse(a.snapshot));
+  results.push({id:k.id,share:Math.max(0,Math.min(1,b.normalizedProgress+speed*Math.max(0,stop-Date.parse(b.snapshot)))),snapshot:b.snapshot});
+ }
+ const eligible=results.filter(r=>r.share!==null);
+ if(!krs.length||eligible.length!==krs.length)return {share:null,method:null,eligible:eligible.length,total:krs.length,results};
+ const weighted=krs.every(k=>finite(k.weight)&&k.weight>0),equal=krs.every(k=>!present(k.weight));
+ if(!weighted&&!equal)return {share:null,method:null,eligible:eligible.length,total:krs.length,results};
+ const weights=krs.map(k=>weighted?k.weight:1),sum=weights.reduce((a,b)=>a+b,0);
+ return {share:results.reduce((n,r,i)=>n+r.share*weights[i],0)/sum,method:weighted?'文档权重估算':'等权估算',eligible:eligible.length,total:krs.length,results};
+}
+function theme(name,type){
+ let h=2166136261;for(const c of name)h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;
+ const hue=(h%360),secondary=(hue+65)%360;
+ return {id:'team-'+h.toString(16),accent:`hsl(${hue} 83% 73%)`,hot:`hsl(${secondary} 85% 72%)`,bg:`hsl(${hue} 48% 8%)`,panel:`hsl(${hue} 42% 15%)`,hue,type};
+}
+function validateConfig(c){
+ if(c?.schemaVersion!==1||!c.projectName?.trim()||!Array.isArray(c.teams)||!c.teams.length)throw Error('请填写所属项目和团队清单。');
+ if(!/^https:\/\//.test(c.okr?.sourceUrl||'')||!c.okr.sheet?.trim()||!c.okr.teamField?.trim())throw Error('请填写 HTTPS OKR 地址、Sheet 和团队字段。');
+ const placeholder=v=>/^\s*<.*>\s*$|^你的|^(?:团队正式名称[AB]|我的正式团队名|文档团队字段的准确值|Sheet 中团队[AB]的准确值)$/.test(v)||/^https:\/\/你的/.test(v);
+ if([c.projectName,c.okr.sourceUrl,c.okr.sheet,...c.teams.flatMap(t=>[t.name,t.okrTeam])].some(placeholder))throw Error('配置仍有占位内容，请先填写并核实全部必要信息。');
+ const ids=new Set(),names=new Set();for(const t of c.teams){if(!t.id||!t.name?.trim()||!t.okrTeam?.trim()||!['PST','GST','auto'].includes(t.type))throw Error('每队填写 id、正式名称、type 和 OKR 团队筛选值。');if(ids.has(t.id)||names.has(t.name))throw Error('团队 id 和名称必须唯一。');ids.add(t.id);names.add(t.name);}
+ if(c.output?.filename&&(/[<>:"/\\|?*]/.test(c.output.filename)||!c.output.filename.endsWith('.html')))throw Error('输出文件名必须是合法的 HTML 文件名。');
+ return c;
+}
+function validateData(data,c){
+ if(data?.schemaVersion!==1||!Number.isFinite(Date.parse(data.generatedAt))||!Array.isArray(data.teams)||data.teams.length!==c.teams.length)throw Error('数据版本、生成时间或团队数量不匹配。');
+ data.teams.forEach((t,i)=>{
+  const expected=c.teams[i];if(t.id!==expected.id||t.name!==expected.name||t.projectName!==c.projectName)throw Error('团队身份、顺序或所属项目不匹配。');
+  if(!['PST','GST'].includes(t.type)||!t.classificationVerified||(expected.type!=='auto'&&expected.type!==t.type))throw Error('团队类型必须由栏目和卡片交叉核实。');
+  const b=t.board;if(!b||!b.id||!b.sprint||!validDate(b.begin)||!validDate(b.end)||b.begin>b.end||!Number.isFinite(Date.parse(b.snapshot))||!Array.isArray(b.cards))throw Error('Sprint 身份、日期、快照或卡片缺失。');
+  if(!b.identityVerified)throw Error('Sprint 身份未核实。');
+  if(b.begin>beijingDay(b.snapshot))throw Error('不能选择快照日期尚未开始的 Sprint。');
+  const ids=new Set();for(const card of b.cards){if(!card.id||!card.title||ids.has(card.id))throw Error('卡片 ID 缺失或重复。');ids.add(card.id);if(!['story','task','experiment','goal','risk','defect'].includes(card.kind)||!['todo','doing','testing','verifying','done'].includes(card.status))throw Error('卡片分类／状态无效。');if(card.kind==='task'&&!['todo','doing','done'].includes(card.status)||card.kind==='experiment'&&!['todo','verifying','done'].includes(card.status)||card.kind==='story'&&!['todo','doing','testing','done'].includes(card.status))throw Error('卡片状态与统计口径不匹配。');if(!Array.isArray(card.owners))throw Error('负责人使用数组，缺失时为空数组。');if(card.summary&&!card.summarySource)throw Error('摘要必须记录对应原文。');}
+  const sp=b.storyPoints;if(sp&&[sp.done,sp.total,sp.remaining].every(finite)&&(sp.done<0||sp.remaining<0||Math.abs(sp.done+sp.remaining-sp.total)>1e-8))throw Error('故事点统计不一致。');
+  if(b.workdaysVerified&&workdays(b).elapsed===null)throw Error('已核实的工作日清单无效。');
+  const o=t.okr;if(!o||o.sourceUrl!==c.okr.sourceUrl||o.sheet!==c.okr.sheet||o.teamFilter!==expected.okrTeam||!Array.isArray(o.objectives))throw Error('OKR 文档、Sheet 或团队筛选不匹配。');
+  if(o.complete&&(!o.identityVerified||!Number.isFinite(Date.parse(o.snapshot))))throw Error('OKR 身份或快照未核实。');
+  const krIds=new Set();for(const goal of o.objectives){if(!goal.id||!goal.title||!Array.isArray(goal.krs))throw Error('O 身份或原文缺失。');for(const kr of goal.krs){if(!kr.id||!kr.text||krIds.has(kr.id))throw Error('KR ID 缺失或重复。');krIds.add(kr.id);}}
+  if(t.commitment&&(!t.commitment.source||t.commitment.boardId!==b.id||t.commitment.sprint!==b.sprint))t.commitment=null;
+ });return data;
+}
+const api={DAY,present,finite,beijingDay,validDate,rate,trend,workdays,counts,total,actualColor,okrForecast,theme,validateConfig,validateData};
+if(typeof module!=='undefined')module.exports=api;else window.CarouselCore=api;
+
+'use strict';
+const C=window.CarouselCore;
+let DATA=JSON.parse(document.getElementById('carousel-data').textContent);
+const refreshToken=new URL(location.href).searchParams.get('__carousel_data_frame');
+const PAGE_MS=[300000,300000,30000,30000],REFRESH_MS=1800000;
+const $=id=>document.getElementById(id),deck=$('deck'),progress=$('progressFill');
+const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e};
+const show=x=>C.present(x)?String(x):'未提供';
+const number=x=>C.finite(x)?String(x):'未核实';
+const owners=c=>c.owners?.length?c.owners.join('、'):'未提供';
+const title=c=>c.summary&&c.summarySource===c.title?c.summary:c.title;
+const countText=(a,b)=>C.finite(a)&&C.finite(b)?`${a} / ${b} · ${C.rate(a,b)}%`:'无法计算';
+const statusText=r=>r.share===null?r.label:`${r.label}（预估完成 ${(r.share*100).toFixed(1)}%）`;
+const snapshotText=x=>C.present(x)&&Number.isFinite(Date.parse(x))?new Date(Date.parse(x)+8*3600000).toISOString().slice(0,16).replace('T',' '):'未提供';
+const allCards=t=>t.board?.cards||[];
+const bucket=(t,kind,status)=>allCards(t).filter(c=>c.kind===kind&&c.status===status);
+let slides=[],offsets=[],durations=[],cycle=0,current=-1,origin=Date.now(),paused=false,pauseAt=0;
+let refreshDeadline=Date.now()+REFRESH_MS,nextRefreshAttempt=0,refreshInFlight=false;
+let transitionTimer=0,layoutIssues=[];
+function card(c){
+ const el=node('article','story-card delivery-status-card');el.dataset.cardId=c.id;
+ el.append(node('div','title',title(c)),node('div','meta',`负责人：${owners(c)}${c.deadline?' · 截止 '+c.deadline:c.finished?' · 完成 '+c.finished:''}${c.priority?' · '+c.priority:''}${c.riskTags?.length?' · '+c.riskTags.join('、'):''}`));
+ el.title=`${c.title}\nID：${c.id}\n类型：${show(c.originalType)}\n状态：${show(c.originalStatus||c.status)}\n负责人：${owners(c)}\n截止：${show(c.deadline)}\n完成：${show(c.finished)}\n优先级：${show(c.priority)}\n风险：${c.riskTags?.join('、')||'未提供'}\n详情：${show(c.description)}`;
+ return el;
+}
+function frame(t,kind,index){
+ const labels=['双月 OKR · 目标与关键结果','Sprint 概览',t.type==='PST'?'交付情况 · 全部用户故事':'交付情况 · 全部实验卡','预测与阻碍 · 趋势 / 风险 / 行动'];
+ const s=node('section','slide');s.dataset.pageId=t.id+':'+kind;s.dataset.teamId=t.id;s.dataset.kind=String(kind);s.dataset.group=String((t.type==='GST'?4:0)+kind);
+ const top=node('header','topline');top.append(node('div','brand',t.name),node('div','section-title',labels[kind]),node('div','badge',`${t.board?.sprint||'Sprint 未核实'} · ${index+1}/${DATA.teams.length*4}`));
+ const foot=node('div','footer');foot.append(node('span','',`领歌 Sprint · 北京时间快照 ${snapshotText(t.board?.snapshot)}`),node('span','page-count'));
+ foot.lastChild.innerHTML='切页 <b data-slide-timer>05:00</b>　|　刷新 <b data-refresh-timer>30:00</b>';
+ s.append(top,foot);return s;
+}
+function panel(label,value,note,cls=''){const e=node('div','panel '+cls);e.append(node('div','label',label),node('div','value',value),node('div','small-note',note));return e;}
+function okrPage(t,index){
+ const s=frame(t,0,index),o=t.okr||{},layout=node('div','okr-layout'),intro=node('div','panel okr-intro');
+ intro.append(node('div','okr-period',`${o.period||'期间未核实'} · ${o.sheet||'Sheet 未核实'} · 团队 ${o.teamFilter||'未核实'}`),node('div','okr-source',`来源：${o.sourceTitle||'文档未核实'} · 北京时间快照 ${snapshotText(o.snapshot)}${o.stale?' · 快照已过期，沿用同团队核实数据':''}${!o.complete?' · 数据缺失／未读完':''}`));
+ const forecast=C.okrForecast(o),goals=o.objectives||[],krs=goals.flatMap(g=>g.krs||[]),stats=node('div','panel okr-stat');
+ stats.append(node('div','label','当前目标与关键结果'),node('div','okr-count',`${goals.length} 个目标 · ${krs.length} 条 KR`),node('div','okr-stat-note',forecast.share===null?`截止预测：数据不足，无法预估。可计算 ${forecast.eligible}/${forecast.total} 条 KR，不代表整体 OKR。`:`截止预估 ${(forecast.share*100).toFixed(1)}% · ${forecast.method} · 速度不变假设`));
+ const grid=node('div','panel okr-objectives');
+ if(!goals.length)grid.append(node('article','okr-objective','OKR 数据缺失：尚未获取并核实该团队的 O／KR。'));
+ goals.forEach(g=>{
+  const article=node('article','okr-objective');article.dataset.objectiveId=g.id;
+  article.append(node('div','okr-oid',`${g.dimension||'维度未填'} · ${g.label||g.id}`),node('div','okr-title',g.title));
+  article.title=g.title+(g.description?'\n维度说明：'+g.description:'');
+  g.krs.forEach(k=>{
+   const row=node('div','okr-kr');row.dataset.krId=k.id;row.append(node('span','okr-text',k.text));
+   const meta=node('div','okr-kr-meta');meta.append(node('span','',`目标 ${show(k.targetDisplay)}${C.present(k.baseline)?' · 基线 '+k.baseline:''} · `));
+   meta.append(node('span',C.actualColor(k),`实际值 ${C.present(k.actual)?k.actual:'未填'}`),node('span','',` · 进度 ${C.present(k.progress)?k.progress:'未填'} · 得分 ${C.present(k.score)?k.score:'未填'}`));
+   row.append(meta);row.title=k.text+`\n来源：${o.sheet}!${show(k.sourceCell)}；团队=${o.teamFilter}`+(k.sharedKr?'\n共享 KR：'+k.sharedKr:'')+(k.method?'\n口径：'+k.method:'');article.append(row);
+  });grid.append(article);
+ });layout.append(intro,stats,grid);s.append(layout);return s;
+}
+function commitment(t){const c=t.commitment,b=t.board;if(!c||!c.source||c.boardId!==b.id||c.sprint!==b.sprint)return '承诺量未核实';const scope=C.total(C.counts(t,t.type==='PST'?'story':'task')),base=t.type==='PST'?c.stories:c.tasks,delta=C.finite(scope)&&C.finite(base)?scope-base:null,pointDelta=C.finite(b.storyPoints?.total)&&C.finite(c.points)?b.storyPoints.total-c.points:null;return `承诺：${C.finite(c.stories)?c.stories+' 个故事；':''}${C.finite(c.points)?c.points+' 点；':''}${C.finite(c.tasks)?c.tasks+' 项任务；':''}范围变化：${delta===null?'未核实':(delta>0?'+':'')+delta+(t.type==='PST'?' 个故事':' 项任务')}${pointDelta===null?'':'；'+(pointDelta>0?'+':'')+pointDelta+' 点'}。来源：${c.source}`;}
+function chart(t){
+ const b=t.board,c=b.burndown,sp=b.storyPoints,days=C.workdays(b);
+ if(!c?.points?.length||!C.finite(sp?.done)||!C.finite(sp?.total)||!C.finite(sp?.remaining)||days.elapsed===null)return node('div','chart-missing','燃尽数据缺失，无法绘制实际／参考／预测线。');
+ const W=1400,H=410,L=65,R=40,T=45,B=60,PW=W-L-R,PH=H-T-B,points=c.points;
+ const labels=points.map(p=>p.date==='baseline'?'基线':p.date.slice(5).replace('-','/'));
+ if(points.at(-1).date!==b.end)labels.push(b.end.slice(5).replace('-','/'));
+ const x=i=>L+PW*i/Math.max(1,labels.length-1),max=Math.max(50,Math.ceil(Math.max(sp.total,...points.map(p=>p.remaining))/50)*50),y=v=>T+PH*(1-v/max);
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('original-chart');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('preserveAspectRatio','none');svg.setAttribute('role','img');svg.setAttribute('aria-label','燃尽图：实际／参考／预测，单位故事点');
+ function part(tag,attrs,text){const e=document.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,String(v));if(text!==undefined)e.textContent=text;svg.append(e);return e;}
+ part('rect',{width:W,height:H,fill:'white'});
+ for(let v=0;v<=max;v+=50){part('line',{x1:L,y1:y(v),x2:W-R,y2:y(v),stroke:'#dce3e9'});part('text',{x:L-10,y:y(v)+6,'text-anchor':'end',fill:'#526675','font-size':17},v);}
+ labels.forEach((d,i)=>part('text',{x:x(i),y:H-B+25,'text-anchor':'middle',fill:'#526675','font-size':17},d));
+ part('path',{d:`M ${x(0)} ${y(C.finite(c.referenceStart)?c.referenceStart:sp.total)} L ${x(labels.length-1)} ${y(0)}`,fill:'none',stroke:'#8198b1','stroke-width':3,'stroke-dasharray':'9 6'});
+ part('polyline',{points:points.map((p,i)=>`${x(i)},${y(p.remaining)}`).join(' '),fill:'none',stroke:'#2496d1','stroke-width':4});
+ points.forEach((p,i)=>part('circle',{cx:x(i),cy:y(p.remaining),r:4,fill:'#2496d1'}));
+ const r=C.trend(sp.done,sp.total,days.elapsed,days.remaining),last=points.at(-1),end=labels.length-1,pred=r.projected===null?null:sp.total-r.projected;
+ if(pred!==null){part('path',{d:`M ${x(points.length-1)} ${y(last.remaining)} L ${x(end)} ${y(pred)}`,fill:'none',stroke:'#d88905','stroke-width':4,'stroke-dasharray':'9 6'});part('text',{x:x(end)-8,y:y(pred)-12,'text-anchor':'end',fill:'#986106','font-size':17},`截止预计剩余 ${pred.toFixed(1)} 点`);}
+ part('text',{x:Math.min(x(points.length-1)+8,W-R-10),y:y(last.remaining)+25,'text-anchor':points.length-1>=end-1?'end':'start',fill:'#12668f','font-size':17},`当前剩余 ${last.remaining} 点`);
+ [['#2496d1','实际线'],['#8198b1','参考线'],['#d88905','当前速度预测']].forEach(([color,label],i)=>{part('line',{x1:600+i*220,x2:635+i*220,y1:22,y2:22,stroke:color,'stroke-width':4});part('text',{x:642+i*220,y:28,fill:'#405769','font-size':17},label);});
+ part('text',{x:L,y:H-8,fill:'#526675','font-size':16},`速度 ${r.speed===null?'未核实':r.speed.toFixed(1)} 点／工作日 · 剩余 ${number(days.remaining)} 个完整工作日 · 速度及范围不变假设`);
+ return svg;
+}
+function overviewPage(t,index){
+ const s=frame(t,1,index),b=t.board||{},d=C.workdays(b),kind=t.type==='PST'?'story':'task',a=C.counts(t,kind),sum=C.total(a),r=C.trend(a.done,sum,d.elapsed,d.remaining),wrap=node('div',t.type==='PST'?'overview':'g-overview');
+ const heads=node('div','overview-head');heads.append(panel(b.sprint||'Sprint 未核实',`${show(b.begin)} — ${show(b.end)}`,`剩余 ${number(d.remaining)} 个完整工作日`,'sprint-card'),panel(t.type==='PST'?'用户故事目标状态':'任务趋势状态',statusText(r),`截止预计 ${r.projected===null?'无法计算':r.projected.toFixed(1)} / ${number(sum)} · 速度及范围不变`,'status-card'));heads.lastChild.querySelector('.value').classList.add('status-text',r.color);wrap.append(heads);
+ const kpis=node('div','kpis');kpis.append(panel(t.type==='PST'?'用户故事完成率':'任务完成率',countText(a.done,sum),Object.entries(a).map(([k,v])=>`${k==='todo'?'未开始':k==='doing'?'进行中':k==='testing'?'测试中':'已完成'} ${number(v)}`).join(' · '),'kpi'));
+ if(t.type==='PST'){
+  const sp=b.storyPoints||{};kpis.append(panel('故事点已完成／当前总量',countText(sp.done,sp.total),`剩余 ${number(sp.remaining)} 点`,'kpi'),panel('承诺与当前范围',`${number(sum)} 个故事 · ${number(sp.total)} 点`,commitment(t),'kpi'));wrap.append(kpis);
+  const goal=node('div','panel goal-panel');goal.append(node('div','label','Sprint 目标 · 看板原文'),node('div','goal-text',b.goal||'迭代目标未提供'));wrap.append(goal);
+  const graph=node('div','panel chart-panel');graph.append(node('div','chart-title','燃尽图'),chart(t));wrap.append(graph);
+ }else{
+  const e=C.counts(t,'experiment'),n=C.total(e);kpis.append(panel('实验完成率',countText(e.done,n),`${number(e.todo)} 未开始 · ${number(e.verifying)} 验证中 · ${number(e.done)} 已完成`,'kpi'),panel('承诺与当前范围',`${number(sum)} 项任务`,commitment(t),'kpi'));wrap.append(kpis);
+  const open=node('div','gst-open-work');[['待办任务','task','todo'],['进行中任务','task','doing'],['验证中实验','experiment','verifying']].forEach(([label,k,st])=>{
+   const cards=bucket(t,k,st),g=node('section','panel gst-open-group');g.append(node('h2','',`${label} · ${b.complete?cards.length:'已读 '+cards.length+'，总数未核实'} 项`));const list=node('div','gst-open-list');cards.forEach(c=>{const item=node('div','gst-open-card',title(c));item.dataset.cardId=c.id;item.title=`${c.title}\n负责人：${owners(c)}\n截止：${show(c.deadline)}\n详情：${show(c.description)}`;list.append(item)});g.append(list);open.append(g);
+  });wrap.append(open,node('div','panel g-note',`当前范围 ${number(sum)} 项。${commitment(t)}。按任务状态列统计；实验列及子任务进度分开。剩余 ${number(d.remaining)} 个完整工作日，速度和范围不变假设。`));
+ }s.append(wrap);return s;
+}
+function deliveryPage(t,index){
+ const s=frame(t,2,index),wrap=node('div','delivery-status-page'),grid=node('div','delivery-status-groups'),kind=t.type==='PST'?'story':'experiment';
+ const groups=t.type==='PST'?[['已完成','done',['done']],['进行中／测试中','doing',['doing','testing']],['未开始','todo',['todo']]]:[['已完成','done',['done']],['验证中','testing',['verifying']],['未开始','todo',['todo']]];
+ const tracks=[];groups.forEach(([label,color,states])=>{
+  const cards=states.flatMap(st=>bucket(t,kind,st)),cols=Math.max(1,Math.ceil(cards.length/6)),p=node('section','panel delivery-status-group');p.dataset.status=color;p.dataset.empty=String(!cards.length);tracks.push(cards.length?cols:0.75);
+  const h=node('h2','delivery-status-heading',label);h.append(node('span','delivery-status-total',`${t.board.complete?cards.length:'已读 '+cards.length+'，总数未核实'} 项`));p.append(h);
+  if(states.length>1)p.append(node('div','delivery-status-split',`进行中 ${bucket(t,kind,'doing').length} 项 · 测试中 ${bucket(t,kind,'testing').length} 项`));
+  if(cards.length){const list=node('div','delivery-status-cards');list.style.gridTemplateColumns=`repeat(${cols},minmax(0,1fr))`;cards.forEach(c=>{const e=card(c);e.dataset.status=c.status==='verifying'?'testing':c.status;e.prepend(node('span','delivery-status-label',c.status==='testing'?'测试中':c.status==='doing'?'进行中':c.status==='verifying'?'验证中':c.status==='done'?'已完成':'未开始'));if(c.container)e.querySelector('.delivery-status-label').append(' · 看板容器卡');if(C.present(c.checklist?.total))e.append(node('div','meta',`子任务 ${show(c.checklist.done)} / ${c.checklist.total}（独立进度）`));list.append(e)});p.append(list);}grid.append(p);
+ });grid.style.gridTemplateColumns=tracks.map(n=>`minmax(0,${n}fr)`).join(' ');wrap.append(grid);s.append(wrap);return s;
+}
+function forecastPage(t,index){
+ const s=frame(t,3,index),b=t.board,d=C.workdays(b),kind=t.type==='PST'?'story':'task',a=C.counts(t,kind),sum=C.total(a),r=C.trend(a.done,sum,d.elapsed,d.remaining),wrap=node('div','g-overview'),metrics=node('div','forecast-grid');
+ metrics.append(panel('剩余工作量',C.finite(sum)?`${sum-a.done} ${t.type==='PST'?'个故事':'项任务'}`:'无法计算',`剩余 ${number(d.remaining)} 个完整工作日`,'forecast-box'),panel('当前完成速度',r.speed===null?'无法计算':`${r.speed.toFixed(1)} ${t.type==='PST'?'个故事':'项任务'}／工作日`,'按开始日至今天纳入的工作日计算','forecast-box'),panel('截止预计完成',r.projected===null?'无法计算':`${r.projected.toFixed(1)} / ${sum}`,statusText(r),'forecast-box'));
+ metrics.lastChild.querySelector('.small-note').classList.add(r.color);wrap.append(metrics);
+ const cols=node('div','two-col'),risk=node('div','panel section-panel'),action=node('div','panel section-panel');risk.append(node('h2','','主要风险／阻碍'));const list=node('div','risk-list');risk.append(list);action.append(node('h2','','下一步行动及负责人'));const advice=node('div','action-text');
+ function adviceRow(label,text,cards){const g=node('div','pst-dimension-advice');g.append(node('strong','',label),node('div','',`建议：${text}`),node('div','small-note','相关卡片现有负责人：'+([...new Set(cards.flatMap(c=>c.owners))].join('、')||'未提供')));advice.append(g);}
+ const unfinished=allCards(t).filter(c=>c.kind===kind&&c.status!=='done');
+ if(t.type==='PST'){
+  list.append(node('div','risk-row',`用户故事完成风险：${statusText(r)}。当前 ${number(a.done)} / ${number(sum)}，剩余 ${number(d.remaining)} 个完整工作日。速度及范围不变假设。`),node('div','risk-row',`交付情况：${number(a.doing)} 个进行中、${number(a.testing)} 个测试中、${number(a.todo)} 个未开始。测试中尚未验收，计入剩余交付量。`));
+  const stories=new Set(unfinished.map(c=>c.id)),blockers=[...unfinished.filter(c=>c.riskTags?.length||c.blocker),...allCards(t).filter(c=>c.kind==='risk'&&c.status!=='done'&&c.blockedStoryIds?.some(id=>stories.has(id)))];if(!blockers.length)list.append(node('div','risk-row','故事阻碍：未发现已记录的明确阻碍，具体情况待负责人确认。'));else blockers.forEach(c=>list.append(card(c)));
+  const defects=allCards(t).filter(c=>c.kind==='defect'&&c.status!=='done');adviceRow('用户故事维度','推进测试验收及交付闭环，确认剩余工作与阻碍，协调验收资源并核对范围。',unfinished);adviceRow('缺陷维度','安排修复和回归，关注影响验收与上线稳定性的缺陷，确认关闭标准。',defects);
+  const sp=b.storyPoints||{},pr=C.trend(sp.done,sp.total,d.elapsed,d.remaining);metrics.append(panel('故事点预测',pr.projected===null?'无法计算':`${pr.projected.toFixed(1)} / ${sp.total} 点`,`剩余 ${number(sp.remaining)} 点 · 速度及范围不变`,'forecast-box'));
+  const quality=node('div','panel section-panel quality-panel');quality.append(node('h2','',`质量情况 · 未关闭缺陷 ${b.complete?defects.length:'未核实'}`));const qlist=node('div','risk-list quality-list');allCards(t).filter(c=>c.kind==='defect'&&(c.status!=='done'||c.newHighPriority)).forEach(c=>qlist.append(card(c)));if(!qlist.children.length)qlist.append(node('div','small-note',b.complete?'本轮未发现未关闭或新增高优先级缺陷。':'缺陷数据未核实。'));quality.append(qlist);s.dataset.quality='true';wrap.append(quality);
+ }else{
+  const overdue=allCards(t).filter(c=>c.kind==='experiment'&&c.status!=='done'&&c.deadline&&Number.isFinite(Date.parse(c.deadline.includes('T')?c.deadline:c.deadline.replace(' ','T')+'+08:00'))&&Date.parse(c.deadline.includes('T')?c.deadline:c.deadline.replace(' ','T')+'+08:00')<Date.now());
+  const risks=[...new Map([...overdue,...allCards(t).filter(c=>c.status!=='done'&&(c.riskTags?.length||c.blocker||c.kind==='risk'))].map(c=>[c.id,c])).values()];
+  metrics.append(panel('逾期实验',b.complete?`${overdue.length} 张`:'未核实','未完成且截止时间已过','forecast-box'));risk.classList.add('gst-risk-panel');
+  if(!risks.length)list.append(node('div','risk-empty',b.complete?'未发现已记录阻碍或逾期实验。':'风险与逾期实验未核实。'));
+  risks.forEach(c=>{const row=node('div','risk-row gst-risk-row');row.dataset.cardId=c.id;row.append(node('div','risk-title',title(c)),node('div','risk-owner','负责人：'+owners(c)),node('div','risk-due','截止：'+show(c.deadline)));row.title=c.title+(c.riskTags?.length?'\n风险：'+c.riskTags.join('、'):'');list.append(row)});
+  adviceRow('任务与实验维度','确认并回收逾期实验结果，跟进已记录阻碍，推进进行中任务并核对范围。',risks.length?risks:unfinished);
+ }action.append(advice,node('div','small-note',commitment(t)));cols.append(risk,action);wrap.insertBefore(cols,wrap.children[1]||null);s.append(wrap);return s;
+}
+function setTheme(t){
+ const p=t.theme||C.theme(t.name,t.type),body=document.body;body.classList.toggle('theme-gst',t.type==='GST');body.dataset.teamTheme=p.id||t.id;
+ for(const [key,value] of Object.entries({accent:p.accent,hot:p.hot,bg:p.bg,'team-panel':p.panel,'team-hue':p.hue}))body.style.setProperty('--'+key,String(value));
+ body.style.backgroundImage=`radial-gradient(ellipse at 14% 15%,hsla(${p.hue},65%,35%,.24),transparent 43%),radial-gradient(ellipse at 88% 80%,hsla(${(p.hue+65)%360},65%,30%,.2),transparent 40%),linear-gradient(135deg,${p.bg},${p.panel})`;
+}
+function phaseAt(elapsed){if(!cycle)return {index:0,phase:0,duration:300000};const p=Math.max(0,elapsed)%cycle;let i=0;while(i<offsets.length-1&&p>=offsets[i+1])i++;return {index:i,phase:p-offsets[i],duration:durations[i]};}
+function display(i,animate=true){
+ if(i===current||!slides[i])return;clearTimeout(transitionTimer);slides.forEach(s=>{s.className='slide'});const old=slides[current],next=slides[i];
+ if(old&&animate){old.classList.add('leave','fx'+(current%6+1));next.classList.add('enter','fx'+(i%6+1));}current=i;next.classList.add('active');const t=DATA.teams.find(t=>t.id===next.dataset.teamId);if(t)setTheme(t);
+ transitionTimer=setTimeout(()=>{if(old)old.className='slide';next.classList.remove('enter','fx'+(i%6+1))},1100);
+}
+function layoutOkr(slide){
+ const grid=slide.querySelector('.okr-objectives');if(!grid)return;const cards=[...grid.children],n=cards.length,weights=cards.map(c=>c.textContent.length),max=weights.indexOf(Math.max(...weights));
+ const options=[];
+ if(n===5&&max===0)options.push({cols:3,rows:2,areas:[[1,1,2,1],[3,1,1,1],[1,2,1,1],[2,2,1,1],[3,2,1,1]]});
+ if(n===6&&max===3)options.push({cols:4,rows:2,areas:[[1,1,1,1],[2,1,1,1],[1,2,2,1],[3,1,2,1],[3,2,1,1],[4,2,1,1]]});
+ for(const cols of [3,2,4,5,1]){if(innerWidth/cols<350&&cols>1)continue;const cells=Math.ceil(n/cols)*cols;for(const extra of [0,1]){const spans=cards.map((_,i)=>i===max&&extra&&cells>n?2:1);let row=1,col=1;const areas=spans.map(span=>{if(col+span-1>cols){row++;col=1}const a=[col,row,span,1];col+=span;return a});options.push({cols,rows:row,areas});}}
+ let best=null;for(const o of options){grid.style.gridTemplateColumns=`repeat(${o.cols},minmax(0,1fr))`;grid.style.gridTemplateRows=`repeat(${o.rows},minmax(0,1fr))`;cards.forEach((c,i)=>{const [x,y,w,h]=o.areas[i];c.style.gridColumn=`${x} / span ${w}`;c.style.gridRow=`${y} / span ${h}`});const overflow=cards.reduce((s,c)=>s+Math.max(0,c.scrollHeight-c.clientHeight)+Math.max(0,c.scrollWidth-c.clientWidth),0);const score=overflow*1000+o.rows*10+o.cols;if(!best||score<best.score)best={...o,score};if(!overflow)break;}
+ if(best){grid.style.gridTemplateColumns=`repeat(${best.cols},minmax(0,1fr))`;grid.style.gridTemplateRows=`repeat(${best.rows},minmax(0,1fr))`;cards.forEach((c,i)=>{const [x,y,w,h]=best.areas[i];c.style.gridColumn=`${x} / span ${w}`;c.style.gridRow=`${y} / span ${h}`});}
+}
+function measure(slide){
+ const was=slide.className;slide.className='slide active';layoutOkr(slide);
+ const footer=slide.querySelector('.footer')?.getBoundingClientRect().top||innerHeight;
+ const failures=[];for(const e of slide.querySelectorAll('.okr-objective,.okr-title,.okr-kr,.okr-kr-meta,.delivery-status-card,.delivery-status-card .title,.delivery-status-card .meta,.gst-open-card,.risk-row,.risk-title,.section-panel,.goal-panel,.forecast-box,.kpi,.g-note,.brand,.topline,.footer')){const r=e.getBoundingClientRect();if(e.scrollHeight>e.clientHeight+3||e.scrollWidth>e.clientWidth+3||(!e.classList.contains('footer')&&r.bottom>footer+3)||r.bottom>innerHeight+2||r.right>innerWidth+3||r.top< -2)failures.push({page:slide.dataset.pageId,element:e.className,text:e.textContent.slice(0,70)});}
+ for(const svg of slide.querySelectorAll('svg.original-chart')){const vb=svg.viewBox.baseVal;for(const text of svg.querySelectorAll('text')){const r=text.getBBox();if(r.x<0||r.x+r.width>vb.width+1||r.y<0||r.y+r.height>vb.height+1)failures.push({page:slide.dataset.pageId,element:'chart-label',text:text.textContent});}}
+ slide.className=was;return failures;
+}
+function build(){
+ const made=[];DATA.teams.forEach(t=>[okrPage,overviewPage,deliveryPage,forecastPage].forEach(f=>made.push(f(t,made.length))));
+ if(!made.length){const blank=node('section','slide active');blank.append(node('div','setup-empty','Sprint／OKR 标准母版\n尚未配置团队与数据。安装插件后填写配置，由 MCode 读取并核实数据生成主文件。\n此母版不包含任何团队业务数据。'));made.push(blank)}
+ deck.replaceChildren(...made);slides=made;durations=made.map((s,i)=>PAGE_MS[i%4]);offsets=durations.map((_,i)=>durations.slice(0,i).reduce((a,b)=>a+b,0));cycle=durations.reduce((a,b)=>a+b,0);
+ layoutIssues=[];made.forEach(s=>layoutIssues.push(...measure(s)));if(layoutIssues.length)$('controlNotice').textContent=`有 ${layoutIssues.length} 处内容无法完整容纳；生成端须调整后重新验收。`;
+ current=-1;return made;
+}
+function timers(state){const clock=n=>`${String(Math.floor(n/60)).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`;const now=Date.now(),left=Math.max(0,Math.ceil((state.duration-state.phase)/1000)),refresh=refreshInFlight?'更新中':nextRefreshAttempt>now?'重试 '+clock(Math.ceil((nextRefreshAttempt-now)/1000)):clock(Math.max(0,Math.ceil((refreshDeadline-now)/1000)));document.querySelectorAll('[data-slide-timer]').forEach(e=>e.textContent=clock(left));document.querySelectorAll('[data-refresh-timer]').forEach(e=>e.textContent=refresh);progress.style.width=(state.phase/state.duration*100)+'%';}
+function tick(){const p=phaseAt((paused?pauseAt:Date.now())-origin);display(p.index,current>=0);timers(p);if(Date.now()>=refreshDeadline&&Date.now()>=nextRefreshAttempt&&!refreshInFlight)refreshDisplayData();requestAnimationFrame(tick);}
+function jump(delta){origin=Date.now()-offsets[(Math.max(0,current)+delta+slides.length)%slides.length];if(paused)pauseAt=Date.now();}
+function validateIncoming(data){
+ if(data.schemaVersion!==1||!Array.isArray(data.teams)||data.teams.length!==DATA.teams.length||data.templateVersion!==DATA.templateVersion)throw Error('数据／母版版本不匹配，请覆盖同名文件并手动刷新。');
+ const oldIds=DATA.teams.map(t=>t.id+':'+t.type),newIds=data.teams.map(t=>t.id+':'+t.type);if(JSON.stringify(oldIds)!==JSON.stringify(newIds))throw Error('团队或顺序改变，请手动刷新。');
+ C.validateData(data,data.config);if(Date.parse(data.generatedAt)<Date.parse(DATA.generatedAt))throw Error('读取到过期版本。');
+}
+function applyDisplayData(data){
+ validateIncoming(data);const saved=DATA,oldSlides=slides,oldPhase=phaseAt((paused?pauseAt:Date.now())-origin),id=slides[current]?.dataset.pageId,savedOrigin=origin;
+ data.teams.forEach((t,i)=>t.theme=DATA.teams[i].theme);DATA=data;try{build();if(layoutIssues.length)throw Error('新数据无法单屏完整容纳');}catch(e){DATA=saved;deck.replaceChildren(...oldSlides);slides=oldSlides;durations=slides.map((_,i)=>PAGE_MS[i%4]);offsets=durations.map((_,i)=>durations.slice(0,i).reduce((a,b)=>a+b,0));cycle=durations.reduce((a,b)=>a+b,0);origin=savedOrigin;current=-1;display(oldPhase.index,false);throw e;}
+ const index=Math.max(0,slides.findIndex(s=>s.dataset.pageId===id));origin=(paused?pauseAt:Date.now())-offsets[index]-Math.min(oldPhase.phase,durations[index]-1);display(index,false);
+}
+function readSyncedHtmlData(){return new Promise((resolve,reject)=>{
+ const token=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),iframe=document.createElement('iframe'),url=new URL(location.href);iframe.hidden=true;iframe.setAttribute('aria-hidden','true');url.searchParams.set('__carousel_data_frame',token);url.hash='';let settled=false;
+ const done=(error,data)=>{if(settled)return;settled=true;clearTimeout(timeout);window.removeEventListener('message',receive);iframe.remove();error?reject(error):resolve(data)};
+ const receive=e=>{if(e.source===iframe.contentWindow&&e.data?.channel==='sprint-okr-local-data'&&e.data.token===token)done(null,e.data.data)};
+ const timeout=setTimeout(()=>done(Error('读取同名文件超时')),10000);window.addEventListener('message',receive);iframe.addEventListener('error',()=>done(Error('文件不可读')),{once:true});iframe.src=url.href;document.body.append(iframe);
+});}
+async function refreshDisplayData(){if(refreshInFlight||refreshToken)return;refreshInFlight=true;try{const data=await readSyncedHtmlData();applyDisplayData(data);refreshDeadline=Date.now()+REFRESH_MS;nextRefreshAttempt=0;$('controlNotice').textContent='';}catch(e){nextRefreshAttempt=Date.now()+60000;$('controlNotice').textContent='读取失败，保留画面，1 分钟后重试。'+e.message;}finally{refreshInFlight=false;}}
+if(refreshToken)window.parent.postMessage({channel:'sprint-okr-local-data',token:refreshToken,data:DATA},'*');
+else{
+ build();requestAnimationFrame(tick);$('previousSlide').onclick=()=>jump(-1);$('nextSlide').onclick=()=>jump(1);
+ $('toggleFullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch(e){$('controlNotice').textContent='请按 F11 或再次点击全屏。'}};
+ document.addEventListener('fullscreenchange',()=>{$('toggleFullscreen').textContent=document.fullscreenElement?'⛶ 退出全屏':'⛶ 全屏';$('toggleFullscreen').setAttribute('aria-label',document.fullscreenElement?'退出全屏':'进入全屏');});
+ document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(1);if(e.key==='ArrowLeft')jump(-1);if(e.code==='Space'){e.preventDefault();paused=!paused;if(paused)pauseAt=Date.now();else origin+=Date.now()-pauseAt;}});
+ window.addEventListener('resize',()=>{layoutIssues=[];slides.forEach(s=>layoutIssues.push(...measure(s)));});
+}
+
+</script></body></html>
